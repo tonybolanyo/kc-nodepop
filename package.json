@@ -23,11 +23,22 @@
     "debug": "~2.6.3",
     "ejs": "~2.5.6",
     "express": "~4.15.2",
+    "gulp-sass": "^3.1.0",
     "mongoose": "^4.11.11",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "bootstrap": "^4.0.0-beta",
+    "browser-sync": "^2.18.13",
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1",
+    "gulp-buffer": "0.0.2",
+    "gulp-tap": "^1.0.1",
+    "jquery": "^3.2.1",
+    "nodemon": "^1.12.1",
+    "popper.js": "^1.12.5"
   }
 }
