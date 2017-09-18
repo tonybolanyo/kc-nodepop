@@ -9,15 +9,25 @@ router.get('/', (req, res) => {
     const isSale = req.query.sale;
     let filter = {}
     if (tag) {
-        filter.tag = tag;
+        filter.tags = tag;
     }
     if (isSale) {
-        filter.sale = isSale;
+        filter.isSale = isSale;
     }
     console.log(req.query);
-    res.json({
-        todo: 'List of advertisements ',
-        filter: filter
+    const advertisementsQuery = Advertisement.find(filter);
+    advertisementsQuery.exec((err, docs) => {
+        console.log("query exec");
+        if (err) {
+            console.error("Can't retrieve list of advertisements", err);
+            res.json({
+                error: "Can't retrieve advertisements",
+                errorDetails: err
+            });
+        }
+        console.log("advertisements", docs);
+        res.json(docs);
+
     });
 });
 
