@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tonybolanyo/kc-nodepop/issues"
   },
-  "homepage": "https://github.com/tonybolanyo/kc-nodepop#readme"
+  "homepage": "https://github.com/tonybolanyo/kc-nodepop#readme",
+  "dependencies": {
+    "mongoose": "^4.11.11"
+  }
 }
