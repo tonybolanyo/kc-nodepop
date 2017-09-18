@@ -13,15 +13,22 @@
 
 <body>
     <% include components/navbar %>
-    <main class="container">
-        <div class="row mt-3">
-            <div class="col-xs-12">
-                <h1><%= title %> homepage</h1>
-                <p>Welcome to our homepageeee</p>
+        <main class="container">
+            <div class="row mt-3">
+                <div class="col-xs-12">
+                    <div class="card-columns">
+                        <% include components/card %>
+                        <% include components/card %>
+                        <% include components/card %>
+                        <% include components/card %>
+                        <% include components/card %>
+                        <% include components/card %>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
-    <% include components/footer %>
-    <script src="js/main.js"></script>
+        </main>
+        <% include components/footer %>
+            <script src="js/main.js"></script>
 </body>
+
 </html>
