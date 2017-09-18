@@ -20,6 +20,8 @@ gulp.task("default", ["sass", "js"], () => {
     gulp.watch(["src/sass/*.scss", "src/sass/**/*.scss"], ["sass"]);
     // watch styles folder to compile js files
     gulp.watch(["src/js/*.js", "src/js/**/*.js"], ["js"]);
+    // watch ejs views
+    gulp.watch(["views/*.ejs", "views/**/*.ejs"]).on('change', browserSync.reload);
 });
 
 gulp.task("sass", () => {
@@ -41,10 +43,16 @@ gulp.task("js", () => {
                     debug: true
                 }) // new browserify instance
                 .transform("babelify", {
-                    presets: ["env"]
+                    presets: [
+                        ["env", {
+                            "targets": {
+                                "browsers": ["last 2 versions"]
+                            }
+                        }]
+                    ]
                 }) // ES6 -> ES5
                 .bundle() // compile
-                .on("error", (error) => notify().write(error)) // treat errors
+                .on("error", (error) => { console.error(error); }) // treat errors showing on console
         }))
         // back file to gulp buffer to apply next pipe
         .pipe(buffer())        // copy to dest folder
