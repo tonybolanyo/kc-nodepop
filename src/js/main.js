@@ -9,6 +9,10 @@ window.Popper = Popper;
 // Can't import bootstrap using import :(
 require('bootstrap');
 
-$(document).ready(function(){
-    console.log("Document loaded");
-});
+import AdvertisementsService from "./components/AdvertisementsService";
+import AdvertisementsManager from "./components/AdvertisementsManager";
+
+const advertisementsService = new AdvertisementsService("/apiv1/advertisements");
+
+const advertisementsManager = new AdvertisementsManager(".advertisements", advertisementsService);
+advertisementsManager.init();

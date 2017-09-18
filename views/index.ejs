@@ -13,22 +13,35 @@
 
 <body>
     <% include components/navbar %>
-        <main class="container">
-            <div class="row mt-3">
-                <div class="col-xs-12">
-                    <div class="card-columns">
-                        <% include components/card %>
-                        <% include components/card %>
-                        <% include components/card %>
-                        <% include components/card %>
-                        <% include components/card %>
-                        <% include components/card %>
+    <main class="container">
+        <div class="row mt-3">
+            <div class="col-xs-12">
+                <section class="advertisements loading">
+                    <div class="ui-status loading">
+                        <div class="alert alert-secondary" role="alert">
+                            Loading articles, please wait...
+                        </div>
                     </div>
-                </div>
+                    <div class="card-columns ui-status loaded"></div>
+                    <div class="ui-status empty">
+                        <div class="alert alert-info" role="alert">
+                            <h3 class="alert-heading">No articles yet!</h3>
+                            <p class="mb-0">Be the first in publish one!</p>
+                        </div>
+                    </div>
+                    <div class="ui-status error">
+                        <div class="alert alert-danger" role="alert">
+                            <h3 class="alert-heading">Oooops! Something went wrong!</h3>
+                            <p class="mb-0">An error has ocurred while loading articles. Please try again later. If the problem persist,
+                                please contact us using the contact form.</p>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </main>
-        <% include components/footer %>
-            <script src="js/main.js"></script>
+        </div>
+    </main>
+    <% include components/footer %>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
