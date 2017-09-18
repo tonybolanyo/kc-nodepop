@@ -23,6 +23,7 @@ export default class AdvertisementManager extends UIStatusManager {
                         console.log(item);
                         html += this.renderAdvertisement(item);
                     }
+                    html = `<div class="card-deck">${html}</div>`;
                     this.setLoadedHtml(html);
                     this.setLoaded();
                 }
@@ -33,13 +34,16 @@ export default class AdvertisementManager extends UIStatusManager {
     }
 
     renderAdvertisement(item) {
+        const advType = (item.isSale) ? "For sale" : "Search";
         return `
         <div class="card">
-            <img class="card-img-top img-fluid" src="http://lorempixel.com/400/200" alt="${item.name}">
-            <div class="card-block">
+            <img class="card-img-top" src="http://lorempixel.com/400/200" alt="${item.name}">
+            <div class="card-body">
                 <h4 class="card-title">${item.name}</h4>
                 <p class="card-text">&dollar;${item.price}</p>
-                <p class="card-text"><small class="text-muted">${item.isSale}</small></p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text text-right"><small class="text-muted">${advType}</small></p>
             </div>
         </div>
         `
