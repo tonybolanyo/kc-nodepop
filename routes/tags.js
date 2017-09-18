@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+
+// load mongoose and Advertisement model
 const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 

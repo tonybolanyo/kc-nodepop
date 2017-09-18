@@ -1,10 +1,10 @@
 {
   "name": "kc-nodepop",
   "version": "1.0.0",
+  "private": true,
   "description": "KeepCoding Web3 Node module",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,16 @@
   },
   "homepage": "https://github.com/tonybolanyo/kc-nodepop#readme",
   "dependencies": {
-    "mongoose": "^4.11.11"
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "mongoose": "^4.11.11",
+    "morgan": "~1.8.1",
+    "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
