@@ -41,7 +41,7 @@ gulp.task("js", () => {
                     debug: true
                 }) // new browserify instance
                 .transform("babelify", {
-                    presets: ["es2015"]
+                    presets: ["env"]
                 }) // ES6 -> ES5
                 .bundle() // compile
                 .on("error", (error) => notify().write(error)) // treat errors
