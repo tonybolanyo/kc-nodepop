@@ -1,0 +1,97 @@
+[{
+    "name": "Leather belt",
+    "price": 15.50,
+    "isSale": true,
+    "picture": "belts-2160265_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Dumbbells for personal training",
+    "price": 26.95,
+    "isSale": true,
+    "picture": "dumbbells-2465478_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Spanish guitar",
+    "price": 250.00,
+    "isSale": false,
+    "picture": "guitar-2276181_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Silver locket",
+    "price": 155.00,
+    "isSale": false,
+    "picture": "locket-2569573_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Vintage camera 35mm",
+    "price": 95.50,
+    "isSale": true,
+    "picture": "magnifying-glass-2598507_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Makeup brushes kit",
+    "price": 35.95,
+    "isSale": true,
+    "picture": "makeup-brush-1768790_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Pocket watch",
+    "price": 65.00,
+    "isSale": false,
+    "picture": "pocket-watch-2031021_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Rolex wristwatch",
+    "price": 650.00,
+    "isSale": false,
+    "picture": "rolex-2171960_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Classic fire truck",
+    "price": 15000.00,
+    "isSale": false,
+    "picture": "vehicle-2725880_640.png",
+    "tags": ["motor", "work"]
+}, {
+    "name": "Sunglasses",
+    "price": 25.50,
+    "isSale": true,
+    "picture": "wood-sunglasses-2500253_640.jpg",
+    "tags": ["lifestyle"]
+}, {
+    "name": "Oficial genuine Apple Magic Mouse 2 Wireless Rechargeable Multi-Touch",
+    "price": 38.48,
+    "isSale": true,
+    "picture": "workplace-2341642_640.jpg",
+    "tags": ["work"]
+}, {
+    "name": "Mobile phone repairing kit",
+    "price": 30.00,
+    "isSale": false,
+    "picture": "mobile-phone-2510529_640.jpg",
+    "tags": ["work", "mobile"]
+}, {
+    "name": "Android smartphone Samsung/LG/Google",
+    "price": 100.00,
+    "isSale": false,
+    "picture": "phone-380008_640.jpg",
+    "tags": ["mobile", "lifestyle"]
+}, {
+    "name": "Apple iPad",
+    "price": 250.00,
+    "isSale": false,
+    "picture": "ipad-606766_640.jpg",
+    "tags": ["work", "mobile", "lifestyle"]
+}, {
+    "name": "Headphones for smartphone",
+    "price": 19.95,
+    "isSale": true,
+    "picture": "mobile-616012_640.jpg",
+    "tags": ["mobile", "lifestyle", "work"]
+}, {
+    "name": "Smartwatch",
+    "price": 235.95,
+    "isSale": true,
+    "picture": "smart-watch-821557_640.jpg",
+    "tags": ["mobile", "lifestyle"]
+}]
