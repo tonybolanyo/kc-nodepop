@@ -54,6 +54,17 @@ const Advertisement = mongoose.model('Advertisement');
  *          description: filter by sale/search
  *          required: false
  *          type: boolean
+ *        - name: offset
+ *          in: query
+ *          description: offset number of records for pagination
+ *          required: false
+ *          default: 0
+ *          type: integer
+ *        - name: limit
+ *          in: query
+ *          description: maximum records for each page in pagination
+ *          default: 6
+ *          type: integer
  *      responses:
  *          '200':
  *              description: list of advertisements
@@ -65,6 +76,8 @@ const Advertisement = mongoose.model('Advertisement');
 router.get('/', (req, res) => {
     const tag = req.query.tag;
     const isSale = req.query.sale;
+    const offset = parseInt(req.query.offset) || 0;
+    const limit = parseInt(req.query.limit) || 10;
     let filter = {}
     if (tag) {
         filter.tags = tag;
@@ -74,8 +87,11 @@ router.get('/', (req, res) => {
     }
     console.log(req.query);
     const advertisementsQuery = Advertisement.find(filter);
+
+    // add pagination
+    advertisementsQuery.skip(offset).limit(limit);
+
     advertisementsQuery.exec((err, docs) => {
-        console.log("query exec");
         if (err) {
             console.error("Can't retrieve list of advertisements", err);
             res.json({
@@ -83,7 +99,7 @@ router.get('/', (req, res) => {
                 errorDetails: err
             });
         }
-        console.log("advertisements", docs);
+        console.log("advertisements count", docs.length);
         res.json(docs);
 
     });

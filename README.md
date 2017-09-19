@@ -69,18 +69,4 @@ Now you can access to http://localhost:8000 to see the home page with the list o
 
 # API description
 
-## API endpoints
-
-** List announces **:
-    ``/apiv1/advertisements``
-
-Accepted filters:
-    ?tag=<tag_name>
-    ?type=<sale|buy>
-    ?pmin=<price_min>
-    ?pmax=<price_max>
-    ?name=<part_of_name>
-
-** List tags **:
-    ``/apiv1/tags``
-
+You can explore and test the API running the server and visiting http://localhost:8000/docs or using the Explore API link in the navigation bar.
