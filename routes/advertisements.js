@@ -6,7 +6,7 @@ const Advertisement = mongoose.model('Advertisement');
 
 /**
  * @swagger
- * definition:
+ * definitions:
  *   Advertisement:
  *     properties:
  *       _id:

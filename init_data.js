@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 // Configuration data
 const dataFilePath = './sample_data.json';
 const mongoServer = {
-    url: 'vvddtvins01',
+    url: '127.0.0.1',
     port: '27017',
     database: 'nodepop'
 }
