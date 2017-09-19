@@ -9,7 +9,10 @@ var browserify = require("browserify");
 var buffer = require("gulp-buffer");
 var tap = require("gulp-tap");
 
-gulp.task("default", ["sass", "js"], () => {
+// for images
+var imagemin = require("gulp-imagemin");
+
+gulp.task("default", ["sass", "js", "images"], () => {
     // launch develop local server
     browserSync.init({
         proxy: "http://127.0.0.1:3000/",
@@ -22,6 +25,8 @@ gulp.task("default", ["sass", "js"], () => {
     gulp.watch(["src/js/*.js", "src/js/**/*.js"], ["js"]);
     // watch ejs views
     gulp.watch(["views/*.ejs", "views/**/*.ejs"]).on('change', browserSync.reload);
+    // watch images folder
+    gulp.watch(["src/images/*", "src/images/**/*"], ["images"]);
 });
 
 gulp.task("sass", () => {
@@ -59,4 +64,11 @@ gulp.task("js", () => {
         .pipe(gulp.dest("public/js/"))
         // and reload browser
         .pipe(browserSync.stream());
+});
+
+// images
+gulp.task("images", () => {
+    gulp.src(["src/images/*", "src/images/**/*"])
+        .pipe(imagemin())
+        .pipe(gulp.dest("public/images/"));
 });

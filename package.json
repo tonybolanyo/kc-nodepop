@@ -36,6 +36,7 @@
     "browserify": "^14.4.0",
     "gulp": "^3.9.1",
     "gulp-buffer": "0.0.2",
+    "gulp-imagemin": "^3.3.0",
     "gulp-tap": "^1.0.1",
     "jquery": "^3.2.1",
     "nodemon": "^1.12.1",
