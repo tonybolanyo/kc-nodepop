@@ -1,6 +1,23 @@
 # kc-nodepop
 KeepCoding Web3 Node module
 
+## Configure project
+
+First of all clone the repository and install dependencies with npm
+
+```
+$ git clone https://github.com/tonybolanyo/kc-nodepop
+$ cd kc-nodepop
+$ npm install
+```
+
+If you don't have a running mongodb server on localhost at the default port (27017) you need to install and launch one or change configuration params to specify one live server.
+
+TODO: insert mongodb info
+
+TODO: insert configuration params how-to
+
+
 ## Setting up initial sample data
 
 You can use `npm run initdb` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `sample_data.json` file.
@@ -32,6 +49,25 @@ const mongoServer = {
 - **picture**: string. Name of an image file for article. Image must exists in public/images/advertisements when server is running. Any image on src/images/advertisement will be optimized and copied to this folder if you use gulp to start server.
 
 
+## Running server for develop
+
+Once everything is configured you should run express with nodemon and gulp tasks to start server and watch source folders for any change. Nodemon and browser-sync reload server or browser with changes so you don't need to reload manually.
+
+```
+// in project root folder (where package.json is)
+$ nodemon
+```
+
+in another console:
+
+```
+// in project root folder (where gulpfile.js is)
+$ gulp
+```
+
+Now you can access to http://localhost:8000 to see the home page with the list of advertisements.
+
+# API description
 
 ## API endpoints
 
