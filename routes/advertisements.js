@@ -4,6 +4,23 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
+/**
+ * @swagger
+ * /advertisements:
+ *   get:
+ *      description: Returns a list of advertisements
+ *      summary: Find advertisements
+ *      operationId: getAdvertisements
+ *      produces:
+ *          - application/json
+ *      responses:
+ *          '200':
+ *              description: list of advertisements
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/definitions/Advertisement'
+ */
 router.get('/', (req, res) => {
     const tag = req.query.tag;
     const isSale = req.query.sale;
@@ -31,6 +48,35 @@ router.get('/', (req, res) => {
     });
 });
 
+/**
+ * @swagger
+ * /advertisements:
+ *   post:
+ *     description: Create a new advertisement
+ *     operationId: createAdvertisement
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: name
+ *         description: name of the article to sale or search.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: isSale
+ *         description: true for sale / false for search.
+ *         in: formData
+ *         required: true
+ *         type: boolean
+ *       - name: price
+ *         description: in sales, price to sale. In search, max. price
+ *         required: true
+ *         type: number
+ *       - name: picture
+ *         description: filename of advertisement picture
+ *     responses:
+ *       201:
+ *         description: advertisement created
+ */
 router.post('/', (req, res) => {
     console.log(req.body);
     const advertisement = new Advertisement({
