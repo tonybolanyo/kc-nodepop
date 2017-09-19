@@ -8,11 +8,12 @@ const mongoServer = {
     port: '27017',
     database: 'nodepop'
 }
-const advCollection = 'advertisements';
 // End of configuration data
 
+const advCollection = 'advertisements';
 const connectionString = `mongodb://${mongoServer.url}:${mongoServer.port}/${mongoServer.database}`;
 
+// Allows access to database in every promise after connect to mongodb
 let database;
 
 fs.readFile(dataFilePath, 'utf8', (err, data) => {
