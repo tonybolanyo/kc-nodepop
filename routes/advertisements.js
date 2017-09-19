@@ -39,7 +39,21 @@ const Advertisement = mongoose.model('Advertisement');
  *      summary: List advertisements
  *      operationId: getAdvertisements
  *      produces:
- *          - application/json
+ *        - application/json
+ *      parameters:
+ *        - name: tag
+ *          in: query
+ *          description: filter by tag
+ *          required: false
+ *          type: array
+ *          items:
+ *            type: string
+ *          collectionFormat: multi
+ *        - name: sale
+ *          in: query
+ *          description: filter by sale/search
+ *          required: false
+ *          type: boolean
  *      responses:
  *          '200':
  *              description: list of advertisements
