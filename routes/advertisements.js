@@ -36,7 +36,7 @@ const Advertisement = mongoose.model('Advertisement');
  * /advertisements:
  *   get:
  *      description: Returns a list of advertisements
- *      summary: Find advertisements
+ *      summary: List advertisements
  *      operationId: getAdvertisements
  *      produces:
  *          - application/json
@@ -79,7 +79,7 @@ router.get('/', (req, res) => {
  * @swagger
  * /advertisements:
  *   post:
- *     description: Create a new advertisement
+ *     summary: Create a new advertisement
  *     operationId: createAdvertisement
  *     produces:
  *       - application/json
