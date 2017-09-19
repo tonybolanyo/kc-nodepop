@@ -6,6 +6,33 @@ const Advertisement = mongoose.model('Advertisement');
 
 /**
  * @swagger
+ * definition:
+ *   Advertisement:
+ *     properties:
+ *       _id:
+ *         description: ObjectId
+ *         type: string
+ *       name:
+ *         description: name of the article to sale or search.
+ *         type: string
+ *       isSale:
+ *         description: true for sale / false for search.
+ *         type: boolean
+ *       price:
+ *         description: in sales, price to sale. In search, max. price
+ *         type: number
+ *       picture:
+ *         description: filename of advertisement picture
+ *         type: string
+ *       tags:
+ *         description: array of tags. Must be one of work, mobile, motor, lifestyle
+ *         type: array
+ *         items: 
+ *           type: string
+ */
+
+/**
+ * @swagger
  * /advertisements:
  *   get:
  *      description: Returns a list of advertisements
@@ -57,25 +84,15 @@ router.get('/', (req, res) => {
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: name
- *         description: name of the article to sale or search.
- *         in: formData
+ *       - name: advertisement
+ *         description: advertisement object
+ *         in: body
  *         required: true
- *         type: string
- *       - name: isSale
- *         description: true for sale / false for search.
- *         in: formData
- *         required: true
- *         type: boolean
- *       - name: price
- *         description: in sales, price to sale. In search, max. price
- *         required: true
- *         type: number
- *       - name: picture
- *         description: filename of advertisement picture
+ *         schema:
+ *           $ref: '#/definitions/Advertisement'
  *     responses:
  *       201:
- *         description: advertisement created
+ *         description: advertisement succesfully created
  */
 router.post('/', (req, res) => {
     console.log(req.body);
