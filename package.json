@@ -28,8 +28,7 @@
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.11",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "swagger-jsdoc": "^1.9.7"
+    "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
@@ -43,6 +42,8 @@
     "gulp-tap": "^1.0.1",
     "jquery": "^3.2.1",
     "nodemon": "^1.12.1",
-    "popper.js": "^1.12.5"
+    "popper.js": "^1.12.5",
+    "swagger-jsdoc": "^1.9.7",
+    "swagger-ui-express": "^2.0.7"
   }
 }
