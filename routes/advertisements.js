@@ -100,6 +100,9 @@ router.get('/', (req, res) => {
             });
         }
         console.log("advertisements count", docs.length);
+        const nextOffset = offset + limit;
+        res.set("Link", "?offset=" + nextOffset + "&limit=" + limit);
+        res.set("-")
         res.json(docs);
 
     });
