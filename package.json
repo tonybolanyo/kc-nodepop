@@ -36,6 +36,7 @@
     "bootstrap": "^4.0.0-beta",
     "browser-sync": "^2.18.13",
     "browserify": "^14.4.0",
+    "eslint": "^4.7.1",
     "gulp": "^3.9.1",
     "gulp-buffer": "0.0.2",
     "gulp-imagemin": "^3.3.0",
