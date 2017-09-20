@@ -3,6 +3,9 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 
 // for css
+const autoprefixer = require('autoprefixer');
+const cssnano = require("cssnano");
+const postcss = require("gulp-postcss");
 const sass = require('gulp-sass');
 
 // for JavaScript
@@ -35,6 +38,12 @@ gulp.task('sass', () => {
     gulp.src(['src/sass/*.scss'])
         // compile sass
         .pipe(sass().on('error', sass.logError))
+        .pipe(postcss([
+            // add prefixes to old browsers
+            autoprefixer(),
+            // compress compiled css
+            cssnano()
+        ]))
         // copy to dest folder
         .pipe(gulp.dest('public/css/'))
         // and reload browser
