@@ -10,6 +10,6 @@ export default class AdvertisementsService {
             url: `${this.endpoint}`,
             success: successCallback,
             error: errorCallback
-        })
+        });
     }
 }

@@ -15,7 +15,13 @@
         ],
         "linebreak-style": [
             "error",
-            "windows"
+            "unix"
+        ],
+        "no-console": "off",
+        "no-unused-vars": [
+            "error", {
+                "argsIgnorePattern": "next"
+            }
         ],
         "quotes": [
             "error",
@@ -24,11 +30,6 @@
         "semi": [
             "error",
             "always"
-        ],
-        "no-unused-vars": [
-            "error", {
-                "argsIgnorePattern": "next"
-            }
         ]
     }
 }

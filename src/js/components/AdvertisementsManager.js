@@ -1,4 +1,4 @@
-import UIStatusManager from "./UIStatusManager";
+import UIStatusManager from './UIStatusManager';
 
 export default class AdvertisementManager extends UIStatusManager {
 
@@ -17,7 +17,7 @@ export default class AdvertisementManager extends UIStatusManager {
                 if (articles.lenght === 0) {
                     this.setEmpty();
                 } else {
-                    let html = "";
+                    let html = '';
                     console.log(articles);
                     for (let item of articles) {
                         console.log(item);
@@ -27,15 +27,15 @@ export default class AdvertisementManager extends UIStatusManager {
                     this.setLoadedHtml(html);
                     this.setLoaded();
                 }
-            }, error => {
+            }, () => {
                 this.setError();
             }
         );
     }
 
     renderAdvertisement(item) {
-        const advType = (item.isSale) ? "For sale" : "Search";
-        const picture = (item.picture) ? `images/advertisements/${item.picture}` : "#";
+        const advType = (item.isSale) ? 'For sale' : 'Search';
+        const picture = (item.picture) ? `images/advertisements/${item.picture}` : '#';
         return `
         <div class="col-xs-12 col-sm-6 col-lg-4">
             <div class="card mb-3">
@@ -49,6 +49,6 @@ export default class AdvertisementManager extends UIStatusManager {
                 </div>
             </div>
         </div>
-        `
+        `;
     }
 }
