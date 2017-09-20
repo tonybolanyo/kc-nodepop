@@ -4,9 +4,10 @@ const gutil = require('gulp-util');
 
 // for css
 const autoprefixer = require('autoprefixer');
-const cssnano = require("cssnano");
-const postcss = require("gulp-postcss");
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
+const stylelint = require('stylelint');
 
 // for JavaScript
 const browserify = require('browserify');
@@ -50,7 +51,15 @@ gulp.task('sass', () => {
         .pipe(browserSync.stream());
 });
 
-gulp.task('js', ['eslint'], () => {
+gulp.task('sass:lint', () => {
+    gulp.src(['src/sass/*.scss', 'src/sass/**/*.scss'])
+        .pipe(postcss([
+            // lint style files
+            stylelint()
+        ]));
+});
+
+gulp.task('js', ['js:lint'], () => {
     gulp.src('src/js/main.js')
         // tap allows to apply a function to every file
         .pipe(tap(function (file) {
@@ -77,7 +86,7 @@ gulp.task('js', ['eslint'], () => {
         .pipe(browserSync.stream());
 });
 
-gulp.task('eslint', () => {
+gulp.task('js:lint', () => {
     // ignore node_modules, as eslint does
     return gulp.src(['*.js', 'lib/*.js', 'models/*.js', 'routes/*.js', 
         'src/js/*.js', 'src/js/**/*.js', '!node_modules/**'])
