@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('morgan');
 const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
 
@@ -78,7 +77,7 @@ router.get('/', (req, res) => {
     const isSale = req.query.sale;
     const offset = parseInt(req.query.offset) || 0;
     const limit = parseInt(req.query.limit) || 10;
-    let filter = {}
+    let filter = {};
     if (tag) {
         filter.tags = tag;
     }
@@ -93,16 +92,16 @@ router.get('/', (req, res) => {
 
     advertisementsQuery.exec((err, docs) => {
         if (err) {
-            console.error("Can't retrieve list of advertisements", err);
+            console.error('Can\'t retrieve list of advertisements', err);
             res.json({
-                error: "Can't retrieve advertisements",
+                error: 'Can\'t retrieve advertisements',
                 errorDetails: err
             });
         }
-        console.log("advertisements count", docs.length);
+        console.log('advertisements count', docs.length);
         const nextOffset = offset + limit;
-        res.set("Link", "?offset=" + nextOffset + "&limit=" + limit);
-        res.set("-")
+        res.set('Link', '?offset=' + nextOffset + '&limit=' + limit);
+        res.set('-');
         res.json(docs);
 
     });

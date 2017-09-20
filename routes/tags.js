@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
         if (err) {
             console.error('Error listing tags', err);
             res.status(500).json({
-                error: "Error listing tags",
+                error: 'Error listing tags',
                 details: err
             });
         }
