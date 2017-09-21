@@ -40,6 +40,11 @@ const Advertisement = mongoose.model('Advertisement');
  *      produces:
  *        - application/json
  *      parameters:
+ *        - name: name
+ *          in: query
+ *          description: filter by first characters of name
+ *          required: false
+ *          type: string
  *        - name: tag
  *          in: query
  *          description: filter by tag
@@ -56,6 +61,7 @@ const Advertisement = mongoose.model('Advertisement');
  *        - name: price
  *          in: query
  *          description: price range in the format [min. price]-[max. price].
+ *          required: false
  *          type: string
  *        - name: offset
  *          in: query
@@ -66,7 +72,8 @@ const Advertisement = mongoose.model('Advertisement');
  *        - name: limit
  *          in: query
  *          description: maximum records for each page in pagination
- *          default: 6
+ *          default: 10
+ *          required: false
  *          type: integer
  *      responses:
  *          '200':
@@ -122,14 +129,8 @@ router.get('/', (req, res, next) => {
  *         description: advertisement succesfully created
  */
 router.post('/', (req, res, next) => {
-    console.log(req.body);
-    const advertisement = new Advertisement({
-        name: req.body.name,
-        isSale: req.body.isSale,
-        price: req.body.price,
-        picture: req.body.picture,
-        tags: req.body.tags
-    });
+    console.log("body:", req.body);
+    const advertisement = new Advertisement(req.body);        
     advertisement.save((err, created) => {
         if (err) {
             err.devMessage = err.message;
@@ -148,6 +149,7 @@ function createFilter(req) {
     const tag = req.query.tag;
     const isSale = req.query.sale;
     const price = req.query.price;
+    const name = req.query.name;
 
     let filter = {};
     
@@ -171,6 +173,10 @@ function createFilter(req) {
             }
         }
     }
+    if (name) {
+        filter.name = new RegExp('^' + name, 'i');
+    }
+    console.log('filter', filter);
     return filter;
 }
 
