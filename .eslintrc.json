@@ -9,6 +9,9 @@
         "sourceType": "module"
     },
     "rules": {
+        "globals": {
+            "__": true
+        }
         "indent": [
             "error",
             4

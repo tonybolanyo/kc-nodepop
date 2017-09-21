@@ -25,13 +25,10 @@ const Advertisement = mongoose.model('Advertisement');
 router.get('/', (req, res, next) => {
     Advertisement.distinct('tags', (err, data) => {
         if (err) {
-            console.error('Error listing tags', err);
-            res.status(500).json({
-                error: 'Error listing tags',
-                details: err
-            });
+            err.devMessage = err.message;
+            err.message = localizedError('CANT_GET_TAGS_LIST');
+            next(err);
         }
-        console.log(data);
         res.json({
             tags: data
         });

@@ -1,14 +1,14 @@
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 //var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 
-var index = require('./routes/index');
+const index = require('./routes/index');
 
-var app = express();
+const app = express();
 
 // connect to db
 require('./lib/mongooseConnection');
@@ -17,7 +17,19 @@ require('./lib/mongooseConnection');
 require('./models/Advertisement');
 
 // import swaggerJSDoc
-var swaggerSpec = require('./lib/swaggerJSDocConfig');
+const swaggerSpec = require('./lib/swaggerJSDocConfig');
+
+// Configure i18n
+const i18n = require('i18n');
+i18n.configure({
+    locales:['en', 'es'],
+    defaultLocale: 'en',
+    directory: __dirname + '/locales',
+    queryParameter: 'lang',
+    autoReload: true,
+    syncFiles: true,
+    register: global,
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +41,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(i18n.init); // use i18n after cookie parser
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
@@ -48,6 +61,8 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+app.use(require('./lib/customError'));
 
 // error handler
 app.use(function(err, req, res, next) {

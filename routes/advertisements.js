@@ -72,7 +72,7 @@ const Advertisement = mongoose.model('Advertisement');
  *                  items:
  *                      $ref: '#/definitions/Advertisement'
  */
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     const tag = req.query.tag;
     const isSale = req.query.sale;
     const offset = parseInt(req.query.offset) || 0;
@@ -84,7 +84,6 @@ router.get('/', (req, res) => {
     if (isSale) {
         filter.isSale = isSale;
     }
-    console.log(req.query);
     const advertisementsQuery = Advertisement.find(filter);
 
     // add pagination
@@ -92,13 +91,11 @@ router.get('/', (req, res) => {
 
     advertisementsQuery.exec((err, docs) => {
         if (err) {
-            console.error('Can\'t retrieve list of advertisements', err);
-            res.json({
-                error: 'Can\'t retrieve advertisements',
-                errorDetails: err
-            });
+            err.devMessage = err.message;
+            err.message = __('Can\'t get advertisements list');
+            next(err);
         }
-        console.log('advertisements count', docs.length);
+        console.log('Original URL:', req.originalUrl);
         const nextOffset = offset + limit;
         res.set('Link', '?offset=' + nextOffset + '&limit=' + limit);
         res.set('-');
@@ -126,7 +123,7 @@ router.get('/', (req, res) => {
  *       201:
  *         description: advertisement succesfully created
  */
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     console.log(req.body);
     const advertisement = new Advertisement({
         name: req.body.name,
@@ -137,18 +134,16 @@ router.post('/', (req, res) => {
     });
     advertisement.save((err, created) => {
         if (err) {
-            console.error('Error creating advertisement', advertisement);
-            res.json({
-                status: 'error',
-                message: 'Error creating advertisement',
-                data: advertisement
-            });
+            err.devMessage = err.message;
+            err.message = __('Can\'t create advertisement');
+            next(err);
         }
-        console.log('Advertisement created', created);
+        console.log(__('Advertisement created'), created);
         res.status(201).json({
             status: 'ok',
             created: created
         });
     });
 });
+
 module.exports = router;
