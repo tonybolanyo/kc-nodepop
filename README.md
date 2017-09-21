@@ -5,7 +5,7 @@ KeepCoding Web3 Node module
 
 First of all clone the repository and install dependencies with npm
 
-```
+```shell
 $ git clone https://github.com/tonybolanyo/kc-nodepop
 $ cd kc-nodepop
 $ npm install
@@ -15,7 +15,7 @@ $ npm install
 
 By default, app asumes you have a working mongodb instance on localhost in the default port. You can change connection details in `config/database.js` file. Default params are:
 
-```json
+```js
 mongodb: {
     host: 'vvddtvins01',
     port: '27017',
@@ -71,8 +71,8 @@ You can explore and test the API running the server and visiting http://localhos
 
 The project uses linting for JavaScript adn SASS files:
 
-- (https://eslint.org/)[**ESLint**] for JavaScript linting
-- (https://stylelint.io/)[**Stylelint**] for SASS linting
+- [**ESLint**](https://eslint.org/) for JavaScript linting
+- [**Stylelint**](https://stylelint.io/) for SASS linting
 
 When you run default gulp task, any linting error on SASS will be informed in the console and any JavaScript linting error will stop the build process.
 
@@ -82,4 +82,4 @@ Only error messages will be translated to user language. All the localization is
 
 Language is taken from `accepted-language` HTTP header in every request or by `lang` param in the query string.
 
-For further information (https://github.com/mashpie/i18n-node)[see **i18n** documentation].
+For further information [see **i18n** documentation](https://github.com/mashpie/i18n-node).
