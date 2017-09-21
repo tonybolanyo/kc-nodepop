@@ -53,6 +53,10 @@ const Advertisement = mongoose.model('Advertisement');
  *          description: filter by sale/search
  *          required: false
  *          type: boolean
+ *        - name: price
+ *          in: query
+ *          description: price range in the format [min. price]-[max. price].
+ *          type: string
  *        - name: offset
  *          in: query
  *          description: offset number of records for pagination
@@ -73,17 +77,11 @@ const Advertisement = mongoose.model('Advertisement');
  *                      $ref: '#/definitions/Advertisement'
  */
 router.get('/', (req, res, next) => {
-    const tag = req.query.tag;
-    const isSale = req.query.sale;
+
     const offset = parseInt(req.query.offset) || 0;
     const limit = parseInt(req.query.limit) || 10;
-    let filter = {};
-    if (tag) {
-        filter.tags = tag;
-    }
-    if (isSale) {
-        filter.isSale = isSale;
-    }
+    const filter = createFilter(req);
+    
     const advertisementsQuery = Advertisement.find(filter);
 
     // add pagination
@@ -97,7 +95,7 @@ router.get('/', (req, res, next) => {
         }
         console.log('Original URL:', req.originalUrl);
         const nextOffset = offset + limit;
-        res.set('Link', '?offset=' + nextOffset + '&limit=' + limit);
+        res.set('Link', req.originalUrl + '?offset=' + nextOffset + '&limit=' + limit);
         res.set('-');
         res.json(docs);
 
@@ -145,5 +143,35 @@ router.post('/', (req, res, next) => {
         });
     });
 });
+
+function createFilter(req) {
+    const tag = req.query.tag;
+    const isSale = req.query.sale;
+    const price = req.query.price;
+
+    let filter = {};
+    
+    if (tag) {
+        filter.tags = tag;
+    }
+    if (isSale) {
+        filter.isSale = isSale;
+    }
+    if (price) {
+        if (price.indexOf('-') >= 0) {
+            const range = price.split('-');
+            const pmin = parseInt(range[0]);
+            filter.price = {};
+            if (pmin) {
+                filter.price.$gte = pmin;
+            }
+            const pmax = parseInt(range[1]);
+            if (pmax) {
+                filter.price.$lte = pmax;
+            }
+        }
+    }
+    return filter;
+}
 
 module.exports = router;
