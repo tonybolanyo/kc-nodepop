@@ -5,13 +5,13 @@
         "node": true
     },
     "extends": "eslint:recommended",
+    "globals": {
+        "__": true
+    },
     "parserOptions": {
         "sourceType": "module"
     },
     "rules": {
-        "globals": {
-            "__": true
-        }
         "indent": [
             "error",
             4
