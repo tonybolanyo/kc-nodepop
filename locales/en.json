@@ -1,6 +1,11 @@
 {
+	"Can't get tag list": "Can't get tag list",
 	"Can't get advertisements list": "Can't get advertisements list",
 	"Can't create advertisement": "Can't create advertisement",
-	"Hello": "Hello",
-	"APPPP": "APPPP"
+	"Advertisement created": "Advertisement created",
+	"You must provide a name for your advertisement": "You must provide a name for your advertisement",
+	"Data not valid": "Data not valid",
+	"You must define your announcement as sale or search": "You must define your announcement as sale or search",
+	"Price must be a positive number or 0 (free)": "Price must be a positive number or 0 (free)",
+	"`{VALUE}` is not a valid tag": "`{VALUE}` is not a valid tag"
 }

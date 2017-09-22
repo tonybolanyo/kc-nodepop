@@ -1,4 +1,11 @@
 {
-	"Hello": "Hello",
-	"APPPP": "APPPP"
+	"Can't get tag list": "No se ha podido obtener la lista de etiquetas",
+	"Can't get advertisements list": "No se ha podido obtener la lista de anuncios",
+	"Can't create advertisement": "No se pudo crear el anuncio",
+	"Advertisement created": "Anuncio creado",
+	"You must provide a name for your advertisement": "Debes especificar un nombre para el anuncio",
+	"Data not valid": "Datos no válidos",
+	"You must define your announcement as sale or search": "Debes definir tu anuncio como venta o búsqueda",
+	"Price must be a positive number or 0 (free)": "El precio debe ser un número positivo o 0 (gratis)",
+	"`{VALUE}` is not a valid tag": "`{VALUE}` no es una etiqueta válida"
 }
