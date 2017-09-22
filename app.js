@@ -45,10 +45,10 @@ app.use(i18n.init); // use i18n after cookie parser
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/apiv1/tags', require('./routes/tags'));
-app.use('/apiv1/advertisements', require('./routes/advertisements'));
+app.use('/apiv1/tags', require('./routes/apiv1/tags'));
+app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
 
-// serve swagger
+// serve swagger JSON API definition
 app.get('/swagger.json', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);

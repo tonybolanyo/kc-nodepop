@@ -129,7 +129,6 @@ router.get('/', (req, res, next) => {
  *         description: advertisement succesfully created
  */
 router.post('/', (req, res, next) => {
-    console.log("body:", req.body);
     const advertisement = new Advertisement(req.body);        
     advertisement.save((err, created) => {
         if (err) {
