@@ -8,11 +8,23 @@ export default class AdvertisementManager extends UIStatusManager {
     }
 
     init() {
+        console.log('init');
         this.loadAdvertisements();
     }
 
     loadAdvertisements() {
+        const offset = this.getUrlParam('offset');
+        const limit = this.getUrlParam('limit');
+        const filters = {
+            price: this.getUrlParam('price'),
+            name: this.getUrlParam('name'),
+            tag: this.getUrlParam('tag'),
+            sale: this.getUrlParam('sale')
+        };
         this.service.listAdvertisements(
+            offset,
+            limit,
+            filters,
             articles => {
                 if (articles.lenght === 0) {
                     this.setEmpty();
@@ -50,5 +62,14 @@ export default class AdvertisementManager extends UIStatusManager {
             </div>
         </div>
         `;
+    }
+
+    getUrlParam (name) {
+        const results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results == null) {
+            return null;
+        } else {
+            return decodeURIComponent(results[1]) || 0;
+        }
     }
 }
