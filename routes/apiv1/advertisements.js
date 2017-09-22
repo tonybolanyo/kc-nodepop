@@ -24,9 +24,9 @@ const Advertisement = mongoose.model('Advertisement');
  *         description: filename of advertisement picture
  *         type: string
  *       tags:
- *         description: array of tags. Must be one of work, mobile, motor, lifestyle
  *         type: array
  *         items: 
+ *           description: Must be one of 'work', 'mobile', 'motor', 'lifestyle'
  *           type: string
  */
 
@@ -99,6 +99,7 @@ router.get('/', (req, res, next) => {
             err.devMessage = err.message;
             err.message = __('Can\'t get advertisements list');
             next(err);
+            return;
         }
         console.log('Original URL:', req.originalUrl);
         const nextOffset = offset + limit;
@@ -127,14 +128,36 @@ router.get('/', (req, res, next) => {
  *     responses:
  *       201:
  *         description: advertisement succesfully created
+ *       422:
+ *         description: validation error, advertisemment not created
+ *         schema:
+ *           properties:
+ *             status:
+ *               description: status code (422)
+ *               type: integer
+ *             message:
+ *               description: general validation message
+ *               type: string
+ *             errors:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   field:
+ *                     description: field name
+ *                     type: string
+ *                   message:
+ *                     description: error message
+ *                     type: string
  */
 router.post('/', (req, res, next) => {
-    const advertisement = new Advertisement(req.body);        
+    const advertisement = new Advertisement(req.body);
     advertisement.save((err, created) => {
         if (err) {
             err.devMessage = err.message;
             err.message = __('Can\'t create advertisement');
             next(err);
+            return;
         }
         console.log(__('Advertisement created'), created);
         res.status(201).json({
@@ -175,7 +198,6 @@ function createFilter(req) {
     if (name) {
         filter.name = new RegExp('^' + name, 'i');
     }
-    console.log('filter', filter);
     return filter;
 }
 

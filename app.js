@@ -5,21 +5,15 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
-
-const index = require('./routes/index');
-
 const app = express();
-
-// connect to db
-require('./lib/mongooseConnection');
-
-// import mongoose model schemas
-require('./models/Advertisement');
 
 // import swaggerJSDoc
 const swaggerSpec = require('./lib/swaggerJSDocConfig');
 
 // Configure i18n
+// warning: it must require before using it
+//          so you must configure before mongoose models
+//          to localize validation messages
 const i18n = require('i18n');
 i18n.configure({
     locales:['en', 'es'],
@@ -29,7 +23,16 @@ i18n.configure({
     autoReload: true,
     syncFiles: true,
     register: global,
-});
+});        
+
+const index = require('./routes/index');
+
+
+// connect to db
+require('./lib/mongooseConnection');
+
+// import mongoose model schemas
+require('./models/Advertisement');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -26,8 +26,9 @@ router.get('/', (req, res, next) => {
     Advertisement.distinct('tags', (err, data) => {
         if (err) {
             err.devMessage = err.message;
-            err.message = __('CANT_GET_TAGS_LIST');
+            err.message = __('Can\'t get tag list');
             next(err);
+            return;
         }
         res.json({
             tags: data
