@@ -1,5 +1,6 @@
-# Nodepop
-KeepCoding Web3 Node module
+# Nodepop reference
+
+Nodepop is a test project to try a simple API for a Wallapop like application backend.
 
 ## Configure project
 
@@ -17,7 +18,7 @@ By default, app asumes you have a working mongodb instance on localhost in the d
 
 ```js
 mongodb: {
-    host: 'vvddtvins01',
+    host: '127.0.0.1',
     port: '27017',
     database: 'nodepop'
 }
@@ -65,7 +66,7 @@ Now you can access to http://localhost:8000 to see the home page with the list o
 
 API documentation is made using JSDoc comments to generate API definitions with Swagger.
 
-You can explore and test the API running the server and visiting http://localhost:8000/docs or using the Explore API link in the navigation bar.
+You can explore and test the API running the server and visiting http://localhost:8000/docs/api or using the Explore API link in the navigation bar.
 
 # Code style
 

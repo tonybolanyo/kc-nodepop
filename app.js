@@ -5,6 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
+const escapeHtml = require('escape-html');
+const fs = require('fs');
 const app = express();
 
 // import swaggerJSDoc
@@ -56,7 +58,8 @@ app.get('/swagger.json', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
 });
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/docs', require('./routes/docs'));
+app.use('/docs/api', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
