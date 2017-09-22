@@ -193,6 +193,8 @@ function createFilter(req) {
             if (pmax) {
                 filter.price.$lte = pmax;
             }
+        } else {
+            filter.price = parseInt(price);
         }
     }
     if (name) {
