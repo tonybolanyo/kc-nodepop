@@ -7,5 +7,6 @@
 	"Data not valid": "Data not valid",
 	"You must define your announcement as sale or search": "You must define your announcement as sale or search",
 	"Price must be a positive number or 0 (free)": "Price must be a positive number or 0 (free)",
-	"`{VALUE}` is not a valid tag": "`{VALUE}` is not a valid tag"
+	"`{VALUE}` is not a valid tag": "`{VALUE}` is not a valid tag",
+	"Not Found": "Not Found"
 }
