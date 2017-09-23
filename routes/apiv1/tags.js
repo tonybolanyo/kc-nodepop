@@ -23,6 +23,8 @@ const Advertisement = mongoose.model('Advertisement');
  *             type: string
  */
 router.get('/', (req, res, next) => {
+    /*
+    // gets used tags
     Advertisement.distinct('tags', (err, data) => {
         if (err) {
             err.devMessage = err.message;
@@ -33,6 +35,12 @@ router.get('/', (req, res, next) => {
         res.json({
             tags: data
         });
+    });
+    */
+    
+    // gets available tags
+    res.json({
+        tags: Advertisement.schema.path('tags.0').enumValues
     });
 });
 
