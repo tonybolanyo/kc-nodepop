@@ -5,7 +5,8 @@
   "description": "KeepCoding Web3 Node module",
   "scripts": {
     "start": "nodemon ./bin/www",
-    "initdb": "node ./lib/init_data.js"
+    "installdb": "node ./lib/installDb.js",
+    "lint": "./node_modules/.bin/eslint .; exit 0"
   },
   "repository": {
     "type": "git",
