@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+// Note on localization
+// here i18n use defaultLocale for messages because schema
+// compiles on init. You must use 18n translation
+// when showing messages to show localized messages based on
+// current user language. You must leave here i18n __ function
+// so autoupdate of language files works.
 const advertisementSchema = mongoose.Schema({
     name: {
         type: String,
@@ -13,7 +19,7 @@ const advertisementSchema = mongoose.Schema({
     },
     price: {
         type: Number,
-        required: true,
+        required: [true, __('You must define a price')],
         min: [0, __('Price must be a positive number or 0 (free)')],
         index: true
     },

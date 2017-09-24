@@ -11,9 +11,6 @@ const app = express();
 const swaggerSpec = require('./lib/swaggerJSDocConfig');
 
 // Configure i18n
-// warning: it must require before using it
-//          so you must configure before mongoose models
-//          to localize validation messages
 const i18n = require('i18n');
 i18n.configure({
     locales:['en', 'es'],
@@ -23,6 +20,7 @@ i18n.configure({
     autoReload: true,
     syncFiles: true,
     register: global,
+    cookie: 'lang'
 });        
 
 // connect to db

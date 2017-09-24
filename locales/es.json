@@ -8,5 +8,6 @@
 	"You must define your announcement as sale or search": "Debes definir tu anuncio como venta o búsqueda",
 	"Price must be a positive number or 0 (free)": "El precio debe ser un número positivo o 0 (gratis)",
 	"`{VALUE}` is not a valid tag": "`{VALUE}` no es una etiqueta válida",
-	"Not Found": "No encontrado"
+	"Not Found": "No encontrado",
+	"You must define a price": "Debes especificar un precio"
 }
