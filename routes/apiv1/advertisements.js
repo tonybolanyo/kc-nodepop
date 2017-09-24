@@ -124,10 +124,29 @@ router.get('/', (req, res, next) => {
  *         in: body
  *         required: true
  *         schema:
- *           $ref: '#/definitions/Advertisement'
+ *           properties:
+ *             name:
+ *               description: name of the article to sale or search.
+ *               type: string
+ *             isSale:
+ *               description: true for sale / false for search.
+ *               type: boolean
+ *             price:
+ *               description: in sales, price to sale. In search, max. price
+ *               type: number
+ *             picture:
+ *               description: filename of advertisement picture
+ *               type: string
+ *             tags:
+ *               type: array
+ *               items: 
+ *                 description: Must be one of 'work', 'mobile', 'motor', 'lifestyle'
+ *                 type: string
  *     responses:
  *       201:
  *         description: advertisement succesfully created
+ *         schema:
+ *           $ref: '#/definitions/Advertisement'
  *       422:
  *         description: validation error, advertisemment not created
  *         schema:
