@@ -176,7 +176,7 @@ function createFilter(req) {
     let filter = {};
     
     if (tag) {
-        filter.tags = tag;
+        filter.tags = {$all: tag};
     }
     if (isSale) {
         filter.isSale = isSale;

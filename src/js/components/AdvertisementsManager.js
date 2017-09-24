@@ -8,7 +8,6 @@ export default class AdvertisementManager extends UIStatusManager {
     }
 
     init() {
-        console.log('init');
         this.loadAdvertisements();
     }
 
@@ -18,9 +17,10 @@ export default class AdvertisementManager extends UIStatusManager {
         const filters = {
             price: this.getUrlParam('price'),
             name: this.getUrlParam('name'),
-            tag: this.getUrlParam('tag'),
+            tag: this.getUrlParamArray('tag'),
             sale: this.getUrlParam('sale')
         };
+        console.log('filters', filters);
         this.service.listAdvertisements(
             offset,
             limit,
@@ -30,9 +30,7 @@ export default class AdvertisementManager extends UIStatusManager {
                     this.setEmpty();
                 } else {
                     let html = '';
-                    console.log(articles);
                     for (let item of articles) {
-                        console.log(item);
                         html += this.renderAdvertisement(item);
                     }
                     html = `<div class="row">${html}</div>`;
@@ -67,11 +65,31 @@ export default class AdvertisementManager extends UIStatusManager {
     }
 
     getUrlParam (name) {
-        const results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results == null) {
+        const re = new RegExp('[?&]' + name + '=([^&#]*)');
+        const result = re.exec(window.location.href);
+        if (result == null) {
             return null;
         } else {
-            return decodeURIComponent(results[1]) || 0;
+            return decodeURIComponent(result[1]) || 0;
+        }
+    }
+
+    getUrlParamArray (name) {
+        const re = new RegExp('[?&]' + name + '=([^&#]*)', 'g');
+        const url = window.location.href;
+        let matches;
+        let results = [];
+        do {
+            matches = re.exec(url);
+            if (matches) {
+                const decodedResult = decodeURIComponent(matches[1]) || 0;
+                results.push(decodedResult);
+            }
+        } while (matches);
+        if (results.length === 0) {
+            return null;
+        } else {
+            return results;
         }
     }
 
