@@ -4,7 +4,8 @@
   "private": true,
   "description": "KeepCoding Web3 Node module",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "dev": "cross-env PORT=3003 NODE_ENV=development nodemon ./bin/www",
     "installdb": "node ./lib/installDb.js",
     "lint": "./node_modules/.bin/eslint .; exit 0"
   },
@@ -40,6 +41,7 @@
     "bootstrap": "^4.0.0-beta",
     "browser-sync": "^2.18.13",
     "browserify": "^14.4.0",
+    "cross-env": "^5.0.5",
     "cssnano": "^3.10.0",
     "eslint": "^4.7.1",
     "gulp": "^3.9.1",

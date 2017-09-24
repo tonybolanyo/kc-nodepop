@@ -31,7 +31,7 @@ TODO: insert mongodb info
 
 ## Setting up initial sample data
 
-You can use `npm run initdb` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `data/sample_data.json` file.
+You can use `npm run installdb` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `data/sample_data.json` file.
 
 This script uses the same mongodb configuration data. When you run the script, it drops any document in `advertisements` collection.
 
@@ -50,8 +50,10 @@ Once everything is configured you should run express with nodemon and gulp tasks
 
 ```
 // in project root folder (where package.json is)
-$ npm start
+$ npm run dev
 ```
+
+This command run express through nodemon on port `3003` through `PORT` environment variable and set `NODE_ENV` environment variable to `development`.
 
 in another console:
 
@@ -60,22 +62,29 @@ in another console:
 $ gulp
 ```
 
-Now you can access to http://localhost:8000 to see the home page with the list of advertisements.
+This command build the frontend from `src` folder to `public` folder and set up browser-sync as a proxy to access express.
+
+Now you can access to http://localhost:3000 to see the home page with the home page of the website showing the list of advertisements.
 
 # API description
 
 API documentation is made using JSDoc comments to generate API definitions with Swagger.
 
-You can explore and test the API running the server and visiting http://localhost:8000/docs/api or using the Explore API link in the navigation bar.
+You can explore and test the API running the server and visiting http://localhost:3000/docs/api or using the Explore API link in the navigation bar, in development or in production.
 
 # Code style
 
-The project uses linting for JavaScript adn SASS files:
+The project uses linting for JavaScript and SASS files:
 
 - [**ESLint**](https://eslint.org/) for JavaScript linting
 - [**Stylelint**](https://stylelint.io/) for SASS linting
 
 When you run default gulp task, any linting error on SASS will be informed in the console and any JavaScript linting error will stop the build process.
+
+If you want to lint only your code from the command line you can do it in two ways:
+
+- with gulp: `gulp js:lint`
+- with npm: `npm lint`
 
 # Internazionalization (i18n)
 

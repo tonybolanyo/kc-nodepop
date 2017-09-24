@@ -21,8 +21,8 @@ const imagemin = require('gulp-imagemin');
 gulp.task('default', ['sass', 'js', 'images'], () => {
     // launch develop local server
     browserSync.init({
-        proxy: 'http://127.0.0.1:3000/',
-        port: 8000
+        proxy: 'http://127.0.0.1:3003/',
+        port: 3000
     });
 
     // watch styles folder to compile sass files
