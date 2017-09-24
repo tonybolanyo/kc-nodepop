@@ -35,6 +35,7 @@ const advertisementSchema = mongoose.Schema({
 });
 
 advertisementSchema.statics.getList = function(filter, offset, limit, callback) {
+    throw new Error('Error simulado');
     const query = Advertisement.find(filter);
     query.skip(offset);
     query.limit(limit);
