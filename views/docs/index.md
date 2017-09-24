@@ -1,6 +1,6 @@
 # Nodepop reference
 
-Nodepop is a test project to try a simple API for a Wallapop like application backend.
+**Nodepop** is a test project to try a simple API for a Wallapop like application backend.
 
 ## Configure project
 
@@ -26,7 +26,10 @@ mongodb: {
 
 If you don't have a running mongodb server on localhost at the default port you need to install and launch one or change configuration params to specify one live server.
 
-TODO: insert mongodb info
+If you need more information on mongodb you can visit the official documentation:
+
+- [Install mongodb](https://docs.mongodb.com/manual/installation/)
+- [Manage mongod processes](https://docs.mongodb.com/manual/tutorial/manage-mongodb-processes/)
 
 
 ## Setting up initial sample data
@@ -66,9 +69,16 @@ This command build the frontend from `src` folder to `public` folder and set up 
 
 Now you can access to http://localhost:3000 to see the home page with the home page of the website showing the list of advertisements.
 
+## Running in production
+
+To simulate run server in production follow these steps:
+
+- build frontend: `gulp build`
+- run server: `npm server`
+
 # API description
 
-API documentation is made using JSDoc comments to generate API definitions with Swagger.
+API documentation is made using [JSDoc](http://usejsdoc.org/) comments to generate API definitions with [Swagger](https://swagger.io/).
 
 You can explore and test the API running the server and visiting http://localhost:3000/docs/api or using the Explore API link in the navigation bar, in development or in production.
 
@@ -86,7 +96,7 @@ If you want to lint only your code from the command line you can do it in two wa
 - with gulp: `gulp js:lint`
 - with npm: `npm lint`
 
-# Internazionalization (i18n)
+# Internationalization (i18n)
 
 Only error messages will be translated to user language. All the localization is made by **i18n** package. Translate function `__` is register as global function so you don't need to use require in every module.
 

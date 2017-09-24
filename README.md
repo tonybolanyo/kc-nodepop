@@ -1,5 +1,6 @@
-# Nodepop
-KeepCoding Web3 Node module
+# Nodepop reference
+
+**Nodepop** is a test project to try a simple API for a Wallapop like application backend.
 
 ## Configure project
 
@@ -17,7 +18,7 @@ By default, app asumes you have a working mongodb instance on localhost in the d
 
 ```js
 mongodb: {
-    host: 'vvddtvins01',
+    host: '127.0.0.1',
     port: '27017',
     database: 'nodepop'
 }
@@ -25,12 +26,15 @@ mongodb: {
 
 If you don't have a running mongodb server on localhost at the default port you need to install and launch one or change configuration params to specify one live server.
 
-TODO: insert mongodb info
+If you need more information on mongodb you can visit the official documentation:
+
+- [Install mongodb](https://docs.mongodb.com/manual/installation/)
+- [Manage mongod processes](https://docs.mongodb.com/manual/tutorial/manage-mongodb-processes/)
 
 
 ## Setting up initial sample data
 
-You can use `npm run initdb` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `data/sample_data.json` file.
+You can use `npm run installdb` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `data/sample_data.json` file.
 
 This script uses the same mongodb configuration data. When you run the script, it drops any document in `advertisements` collection.
 
@@ -49,8 +53,10 @@ Once everything is configured you should run express with nodemon and gulp tasks
 
 ```
 // in project root folder (where package.json is)
-$ npm start
+$ npm run dev
 ```
+
+This command run express through nodemon on port `3003` through `PORT` environment variable and set `NODE_ENV` environment variable to `development`.
 
 in another console:
 
@@ -59,27 +65,56 @@ in another console:
 $ gulp
 ```
 
-Now you can access to http://localhost:8000 to see the home page with the list of advertisements.
+This command build the frontend from `src` folder to `public` folder and set up browser-sync as a proxy to access express.
+
+Now you can access to http://localhost:3000 to see the home page with the home page of the website showing the list of advertisements.
+
+## Running in production
+
+To simulate run server in production follow these steps:
+
+- build frontend: `gulp build`
+- run server: `npm server`
 
 # API description
 
-API documentation is made using JSDoc comments to generate API definitions with Swagger.
+API documentation is made using [JSDoc](http://usejsdoc.org/) comments to generate API definitions with [Swagger](https://swagger.io/).
 
-You can explore and test the API running the server and visiting http://localhost:8000/docs or using the Explore API link in the navigation bar.
+You can explore and test the API running the server and visiting http://localhost:3000/docs/api or using the Explore API link in the navigation bar, in development or in production.
 
 # Code style
 
-The project uses linting for JavaScript adn SASS files:
+The project uses linting for JavaScript and SASS files:
 
 - [**ESLint**](https://eslint.org/) for JavaScript linting
 - [**Stylelint**](https://stylelint.io/) for SASS linting
 
 When you run default gulp task, any linting error on SASS will be informed in the console and any JavaScript linting error will stop the build process.
 
-# Internazionalization (i18n)
+If you want to lint only your code from the command line you can do it in two ways:
+
+- with gulp: `gulp js:lint`
+- with npm: `npm lint`
+
+# Internationalization (i18n)
 
 Only error messages will be translated to user language. All the localization is made by **i18n** package. Translate function `__` is register as global function so you don't need to use require in every module.
 
 Language is taken from `accepted-language` HTTP header in every request or by `lang` param in the query string.
 
 For further information [see **i18n** documentation](https://github.com/mashpie/i18n-node).
+
+**A note about validation messages on mongoose models:**
+
+Mongoose models are compile on app init with this lines in `app.js`:
+
+```
+[...]
+// import mongoose model schemas
+require('./models/Advertisement');
+[...]
+```
+
+At this point i18n is using `defaultLocale` configuration value as active language, (`en` value, actually). Altough you use i18n `__` function you will not see translated messages. You must use i18n `__` to show messages (as `customError` does), but why do you use `__` function on validation messages then?
+
+OK, I configured i18n to auto updated language files, so you need use it here to this feature works.
