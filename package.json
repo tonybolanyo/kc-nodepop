@@ -56,5 +56,9 @@
     "popper.js": "^1.12.5",
     "swagger-jsdoc": "^1.9.7",
     "swagger-ui-express": "^2.0.7"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "ignore": ["src/*", "public/*"]
   }
 }
