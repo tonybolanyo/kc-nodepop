@@ -46,18 +46,20 @@ export default class AdvertisementManager extends UIStatusManager {
     }
 
     renderAdvertisement(item) {
-        const advType = (item.isSale) ? 'For sale' : 'Search';
+        const advType = (item.isSale) ? 'For sale' : 'Wanted';
         const picture = (item.picture) ? `images/advertisements/${item.picture}` : '#';
+        const tags = this.getTagsHtml(item.tags);
         return `
         <div class="col-xs-12 col-sm-6 col-lg-4">
             <div class="card mb-3">
+                <div class="card-header text-right"><small class="text-success">${advType}</small></div>
                 <img class="card-img-top" src="${picture}" alt="${item.name}">
                 <div class="card-body">
                     <h4 class="card-title">${item.name}</h4>
                     <p class="card-text">&dollar;${item.price}</p>
                 </div>
                 <div class="card-footer">
-                    <p class="card-text text-right"><small class="text-muted">${advType}</small></p>
+                    <p class="card-text">${tags}</p>
                 </div>
             </div>
         </div>
@@ -71,5 +73,13 @@ export default class AdvertisementManager extends UIStatusManager {
         } else {
             return decodeURIComponent(results[1]) || 0;
         }
+    }
+
+    getTagsHtml (tags) {
+        let html = '';
+        for(let tag of tags) {
+            html += `<span class="badge badge-secondary">${tag}</span> `;
+        }
+        return html;
     }
 }
