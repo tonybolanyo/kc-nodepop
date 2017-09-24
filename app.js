@@ -25,9 +25,6 @@ i18n.configure({
     register: global,
 });        
 
-const index = require('./routes/index');
-
-
 // connect to db
 require('./lib/mongooseConnection');
 
@@ -47,7 +44,7 @@ app.use(cookieParser());
 app.use(i18n.init); // use i18n after cookie parser
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', require('./routes/index'));
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
 
