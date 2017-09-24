@@ -93,3 +93,18 @@ Only error messages will be translated to user language. All the localization is
 Language is taken from `accepted-language` HTTP header in every request or by `lang` param in the query string.
 
 For further information [see **i18n** documentation](https://github.com/mashpie/i18n-node).
+
+**A note about validation messages on mongoose models:**
+
+Mongoose models are compile on app init with this lines in `app.js`:
+
+```
+[...]
+// import mongoose model schemas
+require('./models/Advertisement');
+[...]
+```
+
+At this point i18n is using `defaultLocale` configuration value as active language, (`en` value, actually). Altough you use i18n `__` function you will not see translated messages. You must use i18n `__` to show messages (as `customError` does), but why do you use `__` function on validation messages then?
+
+OK, I configured i18n to auto updated language files, so you need use it here to this feature works.
