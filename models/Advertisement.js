@@ -34,4 +34,13 @@ const advertisementSchema = mongoose.Schema({
     }]
 });
 
-exports.Advertisement = mongoose.model('Advertisement', advertisementSchema);
+advertisementSchema.statics.getList = function(filter, offset, limit, callback) {
+    const query = Advertisement.find(filter);
+    query.skip(offset);
+    query.limit(limit);
+    // run query and return result to callback function
+    return query.exec(callback);
+};
+
+const Advertisement = mongoose.model('Advertisement', advertisementSchema);
+exports.Advertisement = Advertisement;

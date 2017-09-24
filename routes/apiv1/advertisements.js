@@ -89,24 +89,13 @@ router.get('/', (req, res, next) => {
     const limit = parseInt(req.query.limit) || 10;
     const filter = createFilter(req);
     
-    const advertisementsQuery = Advertisement.find(filter);
-
-    // add pagination
-    advertisementsQuery.skip(offset).limit(limit);
-
-    advertisementsQuery.exec((err, docs) => {
-        if (err) {
-            err.devMessage = err.message;
-            err.message = __('Can\'t get advertisements list');
-            next(err);
-            return;
-        }
-        console.log('Original URL:', req.originalUrl);
-        const nextOffset = offset + limit;
-        res.set('Link', req.originalUrl + '?offset=' + nextOffset + '&limit=' + limit);
-        res.set('-');
-        res.json(docs);
-
+    Advertisement.getList(filter, offset, limit).then(items => {
+        res.json(items);
+    }).catch(err => {
+        err.devMessage = err.message;
+        err.message = __('Can\'t get advertisements list');
+        next(err);
+        return;
     });
 });
 
