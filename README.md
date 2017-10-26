@@ -14,14 +14,14 @@ $ npm install
 
 ### Database configuration
 
-By default, app asumes you have a working mongodb instance on localhost in the default port. You can change connection details in `config/database.js` file. Default params are:
+By default, app asumes you have a working mongodb instance on localhost in the default port. You can change connection details in several ways:
 
-```js
-mongodb: {
-    host: '127.0.0.1',
-    port: '27017',
-    database: 'nodepop'
-}
+1. You can set two environmet variables
+2. You can use `.env` file to set this two environment variables, as shown in `.env.sample`. The two variables are:
+
+```
+NODEPOP_DBHOST=127.0.0.1
+NODEPOP_PORT=27017
 ```
 
 If you don't have a running mongodb server on localhost at the default port you need to install and launch one or change configuration params to specify one live server.
