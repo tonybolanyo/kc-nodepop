@@ -23,42 +23,45 @@
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
+    "debug": "^2.6.9",
     "ejs": "~2.5.6",
-    "express": "~4.15.2",
+    "express": "^4.15.5",
     "i18n": "^0.8.3",
     "marked": "^0.3.6",
-    "mongodb": "^2.2.31",
-    "mongoose": "^4.11.11",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.12.4",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2",
-    "stylelint": "^8.1.1"
+    "serve-favicon": "^2.4.5",
+    "stylelint": "^8.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.4",
-    "babel-preset-env": "^1.6.0",
+    "autoprefixer": "^7.1.6",
+    "babel-preset-env": "^1.6.1",
     "babelify": "^7.3.0",
-    "bootstrap": "^4.0.0-beta",
+    "bootstrap": "^4.0.0-beta.2",
     "browser-sync": "^2.18.13",
-    "browserify": "^14.4.0",
-    "cross-env": "^5.0.5",
+    "browserify": "^14.5.0",
+    "cross-env": "^5.1.0",
     "cssnano": "^3.10.0",
-    "eslint": "^4.7.1",
+    "eslint": "^4.9.0",
     "gulp": "^3.9.1",
     "gulp-buffer": "0.0.2",
     "gulp-eslint": "^4.0.0",
-    "gulp-imagemin": "^3.3.0",
+    "gulp-imagemin": "^3.4.0",
     "gulp-postcss": "^7.0.0",
     "gulp-sass": "^3.1.0",
     "gulp-tap": "^1.0.1",
     "jquery": "^3.2.1",
     "nodemon": "^1.12.1",
-    "popper.js": "^1.12.5",
+    "popper.js": "^1.12.6",
     "swagger-jsdoc": "^1.9.7",
-    "swagger-ui-express": "^2.0.7"
+    "swagger-ui-express": "^2.0.8"
   },
   "nodemonConfig": {
     "verbose": true,
-    "ignore": ["src/*", "public/*"]
+    "ignore": [
+      "src/*",
+      "public/*"
+    ]
   }
 }

@@ -35,6 +35,8 @@ gulp.task('default', ['sass', 'js', 'images'], () => {
     gulp.watch(['src/images/*', 'src/images/**/*'], ['images']);
 });
 
+gulp.task('build', ['sass', 'js', 'images']);
+
 gulp.task('sass', () => {
     gulp.src(['src/sass/*.scss'])
         // compile sass
