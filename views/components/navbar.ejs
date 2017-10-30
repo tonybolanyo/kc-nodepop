@@ -16,13 +16,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="/docs/api/"><%= __('Explore API'); %></a>
             </li>
-            <% getLocales().forEach(lang => {%>
-                <li class="nav-item">
-                    <a class="nav-link" href="/lang/<%= lang %>"><%= lang %></a>
-                </li>
-            <%}); %>
         </ul>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav justify-content-end">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="languageSelector" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= __('Language'); %> (<%= getLocale() %>)
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <% getLocales().forEach(lang => {%>
+                        <a class="dropdown-item<% if (lang == getLocale()) { %> disabled <% } %>" href="/lang/<%= lang %>">
+                            <%= lang %>
+                        </a>
+                    <%}); %>
+                </div>
+            </li>
         </ul>
         <!--
         <form class="form-inline mt-2 mt-md-0">
