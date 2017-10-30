@@ -8,7 +8,7 @@ const swaggerUi = require('swagger-ui-express');
 const app = express();
 
 // import swaggerJSDoc
-const swaggerSpec = require('./lib/swaggerJSDocConfig');
+const swaggerSpec = require('./config/swagger');
 const i18n = require('./config/i18n')();
 // connect to db
 require('./lib/mongooseConnection');
