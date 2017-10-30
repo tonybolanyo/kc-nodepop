@@ -42,5 +42,54 @@ advertisementSchema.statics.getList = function(filter, offset, limit, callback) 
     return query.exec(callback);
 };
 
+/**
+ * Helper function to create filter for query advertisement coollection
+ * from query parameters.
+ * Accepted tags: tag, sale, price, name.
+ * See API documentation at http://<server_domain>:<server_port>/docs/api for details.
+ * @param {*} req The request
+ */
+advertisementSchema.statics.createFilter = function createFilter(req) {
+    const tag = req.query.tag;
+    const isSale = req.query.sale;
+    const price = req.query.price;
+    const name = req.query.name;
+
+    let filter = {};
+    
+    if (tag) {
+        // must have ALL tags
+        filter.tags = {$all: tag};
+    }
+    if (isSale) {
+        // true for sale, false for buy
+        filter.isSale = isSale;
+    }
+    if (price) {
+        // price range can be <min>-<max>
+        // if no min or max specified then from 0 or no max limit
+        // if proce has no -, then find exact price value
+        if (price.indexOf('-') >= 0) {
+            const range = price.split('-');
+            const pmin = parseInt(range[0]);
+            filter.price = {};
+            if (pmin) {
+                filter.price.$gte = pmin;
+            }
+            const pmax = parseInt(range[1]);
+            if (pmax) {
+                filter.price.$lte = pmax;
+            }
+        } else {
+            filter.price = parseInt(price);
+        }
+    }
+    if (name) {
+        // first letters of name, case insensitive
+        filter.name = new RegExp('^' + name, 'i');
+    }
+    return filter;
+}
+
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
 exports.Advertisement = Advertisement;

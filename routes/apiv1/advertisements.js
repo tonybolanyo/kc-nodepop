@@ -127,7 +127,7 @@ router.get('/', (req, res, next) => {
 
     const offset = parseInt(req.query.offset) || 0;
     const limit = parseInt(req.query.limit) || 10;
-    const filter = createFilter(req);
+    const filter = Advertisement.createFilter(req);
     
     Advertisement.getList(filter, offset, limit).then(items => {
         res.json(items);
@@ -199,53 +199,5 @@ router.post('/', async (req, res, next) => {
     });
 });
 
-/**
- * Helper function to create filter for query advertisement coollection
- * from query parameters.
- * Accepted tags: tag, sale, price, name.
- * See API documentation at http://<server_domain>:<server_port>/docs/api for details.
- * @param {*} req The request
- */
-function createFilter(req) {
-    const tag = req.query.tag;
-    const isSale = req.query.sale;
-    const price = req.query.price;
-    const name = req.query.name;
-
-    let filter = {};
-    
-    if (tag) {
-        // must have ALL tags
-        filter.tags = {$all: tag};
-    }
-    if (isSale) {
-        // true for sale, false for buy
-        filter.isSale = isSale;
-    }
-    if (price) {
-        // price range can be <min>-<max>
-        // if no min or max specified then from 0 or no max limit
-        // if proce has no -, then find exact price value
-        if (price.indexOf('-') >= 0) {
-            const range = price.split('-');
-            const pmin = parseInt(range[0]);
-            filter.price = {};
-            if (pmin) {
-                filter.price.$gte = pmin;
-            }
-            const pmax = parseInt(range[1]);
-            if (pmax) {
-                filter.price.$lte = pmax;
-            }
-        } else {
-            filter.price = parseInt(price);
-        }
-    }
-    if (name) {
-        // first letters of name, case insensitive
-        filter.name = new RegExp('^' + name, 'i');
-    }
-    return filter;
-}
 
 module.exports = router;
