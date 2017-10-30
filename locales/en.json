@@ -9,5 +9,6 @@
 	"Price must be a positive number or 0 (free)": "Price must be a positive number or 0 (free)",
 	"`{VALUE}` is not a valid tag": "`{VALUE}` is not a valid tag",
 	"Not Found": "Not Found",
-	"You must define a price": "You must define a price"
+	"You must define a price": "You must define a price",
+	"`string` is not a valid tag": "`string` is not a valid tag"
 }

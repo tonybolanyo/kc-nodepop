@@ -181,20 +181,21 @@ router.get('/', (req, res, next) => {
  *         schema:
  *           $ref: '#/definitions/ValidationError'
  */
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const advertisement = new Advertisement(req.body);
-    advertisement.save((err, created) => {
-        if (err) {
-            err.devMessage = err.message;
-            err.message = __('Can\'t create advertisement');
-            next(err);
-            return;
-        }
-        console.log(__('Advertisement created'), created);
-        res.status(201).json({
-            status: 'ok',
-            created: created
-        });
+    let created;
+    try {
+        created = await advertisement.save();
+    } catch(err) {
+        err.devMessage = err.message;
+        err.message = __('Can\'t create advertisement');
+        next(err);
+        return;
+    };
+    console.log(__('Advertisement created'), created);
+    res.status(201).json({
+        status: 'ok',
+        created: created
     });
 });
 
