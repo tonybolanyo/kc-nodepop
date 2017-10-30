@@ -17,8 +17,8 @@
         <div class="row mt-3">
             <div class="col-xs-12">
                 <div class="alert alert-danger">
-                    <h1>Ouch! We have an <%= error.status %> error</h1>
-                    <p>It's embarrased, but we have a little problem:<br>
+                    <h1><%= __('Ouch! We have an errorcode error', { errorcode: error.status }); %></h1>
+                    <p><%= __('It\'s embarrassed, but we have a little problem:'); %><br>
                     <%= error.message %></p>
                 </div>
             </div>

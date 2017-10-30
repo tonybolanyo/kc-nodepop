@@ -10,5 +10,16 @@
 	"`{VALUE}` is not a valid tag": "`{VALUE}` is not a valid tag",
 	"Not Found": "Not Found",
 	"You must define a price": "You must define a price",
-	"`string` is not a valid tag": "`string` is not a valid tag"
+	"Home": "Home",
+	"current": "current",
+	"Reference": "Reference",
+	"Explore API": "Explore API",
+	"By Tony G. Bolaño for KeepCoding. September 2017": "By Tony G. Bolaño for KeepCoding. September 2017",
+	"Ouch! We have an errorcode error": "Ouch! We have an {{ errorcode }} error",
+	"Loading articles, please wait...": "Loading articles, please wait...",
+	"No articles yet!": "No articles yet!",
+	"Be the first in publish one!": "Be the first in publish one!",
+	"Oooops! Something went wrong!": "Oooops! Something went wrong!",
+	"loading_articles_error_message": "An error has ocurred while loading articles. Please try again later. If the problem persist, please contact us using the contact form.",
+	"It's embarrassed, but we have a little problem:": "It's embarrassed, but we have a little problem:"
 }

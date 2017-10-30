@@ -10,5 +10,16 @@
 	"`{VALUE}` is not a valid tag": "`{VALUE}` no es una etiqueta válida",
 	"Not Found": "No encontrado",
 	"You must define a price": "Debes especificar un precio",
-	"`string` is not a valid tag": "`string` is not a valid tag"
+	"Home": "Portada",
+	"current": "actual",
+	"Reference": "Referencia",
+	"Explore API": "Explorar API",
+	"By Tony G. Bolaño for KeepCoding. September 2017": "Por Tony G. Bolaño para KeepCoding. Septiembre 2017",
+	"Ouch! We have an errorcode error": "¡Vaya! Tenemos un error {{ errorcode }}",
+	"Loading articles, please wait...": "Cargando artículos, por favor, espere...",
+	"No articles yet!": "¡Todavía no hay ningún artículo!",
+	"Be the first in publish one!": "¡Sé el primero en publicar uno!",
+	"Oooops! Something went wrong!": "¡Vaya! Algo va mal...",
+	"loading_articles_error_message": "Ha ocurrido un error al cargar los artículos. Por favor, inténtalo de nuevo más tarde. Si el problema continúa, por favor, contacta con nosotros a través del formulario de contacto",
+	"It's embarrassed, but we have a little problem:": "Es embarazoso, pero tenemos un pequeño problema:"
 }

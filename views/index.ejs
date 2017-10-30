@@ -18,21 +18,20 @@
             <section class="advertisements loading">
                 <div class="ui-status loading">
                     <div class="alert alert-secondary" role="alert">
-                        Loading articles, please wait...
+                        <%= __('Loading articles, please wait...'); %>
                     </div>
                 </div>
                 <div class="ui-status loaded"></div>
                 <div class="ui-status empty">
                     <div class="alert alert-info" role="alert">
-                        <h3 class="alert-heading">No articles yet!</h3>
-                        <p class="mb-0">Be the first in publish one!</p>
+                        <h3 class="alert-heading"><%= __('No articles yet!'); %></h3>
+                        <p class="mb-0"><%= __('Be the first in publish one!'); %></p>
                     </div>
                 </div>
                 <div class="ui-status error">
                     <div class="alert alert-danger" role="alert">
-                        <h3 class="alert-heading">Oooops! Something went wrong!</h3>
-                        <p class="mb-0">An error has ocurred while loading articles. Please try again later. If the problem persist,
-                            please contact us using the contact form.</p>
+                        <h3 class="alert-heading"><%= __('Oooops! Something went wrong!'); %></h3>
+                        <p class="mb-0"><%= __('loading_articles_error_message'); %></p>
                     </div>
                 </div>
             </section>
