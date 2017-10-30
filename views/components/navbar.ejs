@@ -16,9 +16,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/docs/api/"><%= __('Explore API'); %></a>
             </li>
+            <% getLocales().forEach(lang => {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/lang/<%= lang %>"><%= lang %></a>
+                </li>
+            <%}); %>
         </ul>
         <ul class="navbar-nav mr-auto">
-            
         </ul>
         <!--
         <form class="form-inline mt-2 mt-md-0">

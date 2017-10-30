@@ -30,6 +30,7 @@ app.use(i18n.init); // use i18n after cookie parser
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
+app.use('/lang', require('./routes/lang'));
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
 
