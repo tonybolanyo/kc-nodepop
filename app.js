@@ -9,20 +9,7 @@ const app = express();
 
 // import swaggerJSDoc
 const swaggerSpec = require('./lib/swaggerJSDocConfig');
-
-// Configure i18n
-const i18n = require('i18n');
-i18n.configure({
-    locales:['en', 'es'],
-    defaultLocale: 'en',
-    directory: __dirname + '/locales',
-    queryParameter: 'lang',
-    autoReload: true,
-    syncFiles: true,
-    register: global,
-    cookie: 'lang'
-});        
-
+const i18n = require('./config/i18n')();
 // connect to db
 require('./lib/mongooseConnection');
 
