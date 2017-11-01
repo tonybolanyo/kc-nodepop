@@ -5,10 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
-const session = require('express-session');
-const sessionAuth = require('./lib/sessionAuth');
-const mongoose = require('mongoose');
-const MongoStore = require('connect-mongo')(session);
+const jwtAuth = require('./lib/jwtAuth');
 const app = express();
 
 // import swaggerJSDoc
@@ -42,31 +39,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API routes
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
-app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
-
-// sessions middleware
-app.use(session({
-    secret: '4*ym^]].uz53R@pkpeG,4E%vspwYwdu(~,Au)zvR.mAWRWRd_7;7k*c]v^AWGC{!',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 24 * 3600000 },    // one day
-    store: new MongoStore({
-        mongooseConnection: mongoose.connection,     // same mongodb connection,
-        autoReconnect: true,
-        clear_interval: 3600
-    })
-}));
+app.use('/apiv1/advertisements', jwtAuth(), require('./routes/apiv1/advertisements'));
 
 // Web routes
 
-// app.use(sessionAuth());
 // public routes
 app.get('/login', loginController.index);
 app.post('/login', loginController.post);
 app.get('/logout', loginController.logout);
 
 // authenticated routes
-app.use('/', sessionAuth(), require('./routes/index'));
+app.use('/', require('./routes/index'));
 app.use('/lang', require('./routes/lang'));
 
 // serve swagger JSON API definition

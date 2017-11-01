@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 class LoginController {
     index(req, res, next) {
@@ -17,21 +18,22 @@ class LoginController {
         res.locals.title = 'NodePop';
 
         const user = await User.findOne({ email: email, password: password });
-        console.log('user:', user);
 
         if (!user) {
-            console.log('NOT Valid User');
-            res.locals.email = email;
-            res.locals.error = __('No user found with this email/password');
-            res.render('login', { title: 'NodePop' });
+            res.json({ ok: false, error: 'invalid credentials'});
             return;
         }
-        console.log('Valid User');
 
         // good credentials
 
-        req.session.authUser = { _id: user._id };
-        res.redirect('/');
+        jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: '2d'
+        }, (err, token) => {
+            if (err) {
+                return next(err);
+            }
+            res.json({ ok: true, token: token });
+        });
     }
 
     logout(req, res, next) {
