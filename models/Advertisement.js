@@ -71,22 +71,22 @@ advertisementSchema.statics.createFilter = function createFilter(req) {
         // if proce has no -, then find exact price value
         if (price.indexOf('-') >= 0) {
             const range = price.split('-');
-            const pmin = parseInt(range[0]);
+            const pmin = parseFloat(range[0]);
             filter.price = {};
             if (pmin) {
                 filter.price.$gte = pmin;
             }
-            const pmax = parseInt(range[1]);
+            const pmax = parseFloat(range[1]);
             if (pmax) {
                 filter.price.$lte = pmax;
             }
         } else {
-            filter.price = parseInt(price);
+            filter.price = parseFloat(price);
         }
     }
     if (name) {
         // first letters of name, case insensitive
-        filter.name = new RegExp('^' + name, 'i');
+        filter.name = new RegExp(name, 'i');
     }
     return filter;
 };
