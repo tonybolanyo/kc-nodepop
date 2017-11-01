@@ -89,7 +89,7 @@ advertisementSchema.statics.createFilter = function createFilter(req) {
         filter.name = new RegExp('^' + name, 'i');
     }
     return filter;
-}
+};
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
-exports.Advertisement = Advertisement;
+module.exports = Advertisement;
