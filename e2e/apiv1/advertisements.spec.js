@@ -183,3 +183,95 @@ describe('GET ' + endpoint, function() {
     });
 
 });
+
+describe('POST ' + endpoint, function() {
+    beforeEach(async function () {
+        await mockgoose.prepareStorage();
+        mongoose.Promise = global.Promise;
+        await mongoose.connect('mongodb://mockurl/testingDB', {
+            useMongoClient: true
+        });
+        app = require('../../app');
+        mongoose.models = {};
+        mongoose.modelSchemas = {};
+    });
+
+    it('should create a new advertisement', function(done) {
+        const newAdvertisement = {
+            "name": "Mobile phone repairing kit",
+            "price": 30.00,
+            "isSale": false,
+            "picture": "mobile-phone-2510529_640.jpg",
+            "tags": ["work", "mobile"]
+        };
+        request(app)
+            .post(endpoint)
+            .send(newAdvertisement)
+            .expect(201)
+            .end((err, res) => {
+                expect(res.body.status).to.be.eql('ok');
+                expect(res.body.created).to.have.property('_id');
+                done();
+            });
+    });
+
+    it('should fail if no name provided', function(done) {
+        const newAdvertisement = {
+            "price": 30.00,
+            "isSale": false,
+            "picture": "mobile-phone-2510529_640.jpg",
+            "tags": ["work", "mobile"]
+        };
+        request(app)
+            .post(endpoint)
+            .send(newAdvertisement)
+            .expect(422)
+            .end((err, res) => {
+                expect(res.body).to.have.property('errors');
+                expect(res.body.errors).to.be.a('array');
+                expect(res.body.errors[0]).to.have.property('field');
+                expect(res.body.errors[0].field).to.be.eql('name');
+                done();
+            });
+    });
+
+    it('should fail if no isSale value provided', function(done) {
+        const newAdvertisement = {
+            "name": "Mobile phone repairing kit",
+            "price": 30.00,
+            "picture": "mobile-phone-2510529_640.jpg",
+            "tags": ["work", "mobile"]
+        };
+        request(app)
+            .post(endpoint)
+            .send(newAdvertisement)
+            .expect(422)
+            .end((err, res) => {
+                expect(res.body).to.have.property('errors');
+                expect(res.body.errors).to.be.a('array');
+                expect(res.body.errors[0]).to.have.property('field');
+                expect(res.body.errors[0].field).to.be.eql('isSale');
+                done();
+            });
+    });
+
+    it('should fail if no price value provided', function(done) {
+        const newAdvertisement = {
+            "name": "Mobile phone repairing kit",
+            "isSale": false,
+            "picture": "mobile-phone-2510529_640.jpg",
+            "tags": ["work", "mobile"]
+        };
+        request(app)
+            .post(endpoint)
+            .send(newAdvertisement)
+            .expect(422)
+            .end((err, res) => {
+                expect(res.body).to.have.property('errors');
+                expect(res.body.errors).to.be.a('array');
+                expect(res.body.errors[0]).to.have.property('field');
+                expect(res.body.errors[0].field).to.be.eql('price');
+                done();
+            });
+    });
+});

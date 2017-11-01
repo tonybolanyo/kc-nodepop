@@ -192,7 +192,6 @@ router.post('/', async (req, res, next) => {
         next(err);
         return;
     };
-    console.log(__('Advertisement created'), created);
     res.status(201).json({
         status: 'ok',
         created: created
