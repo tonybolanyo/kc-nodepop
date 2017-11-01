@@ -29,5 +29,6 @@
 	"We'll never share your email with anyone else.": "No compartiremos tu correo electrónico con nadie ;)",
 	"Password": "Contraseña",
 	"Login": "Acceder",
-	"No user found with this email/password": "No hemos encontrado ningún usuario con ese correo electrónico/contraseña"
+	"No user found with this email/password": "No hemos encontrado ningún usuario con ese correo electrónico/contraseña",
+	"Logout": "Logout"
 }
