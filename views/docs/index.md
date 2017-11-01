@@ -69,6 +69,18 @@ This command build the frontend from `src` folder to `public` folder and set up 
 
 Now you can access to http://localhost:3000 to see the home page with the home page of the website showing the list of advertisements.
 
+## Running end to end test suite
+
+This project use supertest, mocha and chai to run some test cases and verify the integrity of the API routes.
+
+To run end to end test suite you only need to run this command in the project root folder (the directory where `package.json` is located):
+
+```
+$ npm run e2e
+```
+
+After a few seconds you should see all tests passing.
+
 ## Running in production
 
 To simulate run server in production follow these steps:
