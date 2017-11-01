@@ -196,6 +196,21 @@ describe('POST ' + endpoint, function() {
         mongoose.modelSchemas = {};
     });
 
+    it('should redirect to login when user is not authenticated', function(done) {
+        const newAdvertisement = {
+            "name": "Mobile phone repairing kit",
+            "price": 30.00,
+            "isSale": false,
+            "picture": "mobile-phone-2510529_640.jpg",
+            "tags": ["work", "mobile"]
+        };
+        request(app)
+            .post(endpoint)
+            .send(newAdvertisement)
+            .expect('Location', /\/login/)
+            .expect(302, done);
+    });
+
     it('should create a new advertisement', function(done) {
         const newAdvertisement = {
             "name": "Mobile phone repairing kit",

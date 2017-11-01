@@ -15,6 +15,10 @@ require('./lib/mongooseConnection');
 
 // import mongoose model schemas
 require('./models/Advertisement');
+require('./models/User');
+
+// import login controller
+const loginController = require('./routes/loginController');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,15 +29,18 @@ app.set('view engine', 'ejs');
 // allow disable or change logger format using LOG_FORMAT env variable
 if (process.env.LOG_FORMAT != 'nolog') {
     app.use(logger(process.env.LOG_FORMAT || 'dev'));
-  }
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(i18n.init); // use i18n after cookie parser
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', require('./routes/index'));
 app.use('/lang', require('./routes/lang'));
+app.get('/login', loginController.index);
+app.post('/login', loginController.post);
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 app.use('/apiv1/advertisements', require('./routes/apiv1/advertisements'));
 

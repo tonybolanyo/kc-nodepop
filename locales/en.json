@@ -22,5 +22,12 @@
 	"Oooops! Something went wrong!": "Oooops! Something went wrong!",
 	"loading_articles_error_message": "An error has ocurred while loading articles. Please try again later. If the problem persist, please contact us using the contact form.",
 	"It's embarrassed, but we have a little problem:": "It's embarrassed, but we have a little problem:",
-	"Language": "Language"
+	"Language": "Language",
+	"Login user": "Login user",
+	"Email address": "Email address",
+	"Enter email": "Enter email",
+	"We'll never share your email with anyone else.": "We'll never share your email with anyone else.",
+	"Password": "Password",
+	"Login": "Login",
+	"No user found with this email/password": "No user found with this email/password"
 }
