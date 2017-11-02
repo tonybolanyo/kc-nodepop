@@ -2,11 +2,12 @@ import $ from 'jquery';
 
 export default class LoginManager {
 
-    constructor(selector, service) {
+    constructor(selector, service, pubSub) {
         this.element = $(selector);
         this.form = $(this.element.find('.login-form')[0]);
         this.logoutButton = $(this.element.find('.btn-logout')[0]);
         this.service = service;
+        this.pubsub = pubSub;
     }
 
     init() {
@@ -29,6 +30,7 @@ export default class LoginManager {
     setupLogoutEventHandler() {
         this.logoutButton.on('click', () => {
             this.service.logout(() => {
+                this.pubSub.publish('loggedout');
                 this.setNotLoggedIn();
             });
         });
@@ -44,6 +46,7 @@ export default class LoginManager {
             // if login OK then save token on localStorage
             // and redirect to home
             localStorage.setItem('token', data.token);
+            this.pubSub.publish('loggedin');
             this.resetForm();
             this.setLoggedIn();
         }, error => {

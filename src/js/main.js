@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Popper from 'popper.js';
+import PubSub from 'pubsub-js';
 
 // make jQuery and Popper.js globally available
 // they are needed by Bootstrap
@@ -20,5 +21,5 @@ const advertisementsManager = new AdvertisementsManager('.advertisements', adver
 advertisementsManager.init();
 
 const loginService = new LoginService('/apiv1/login');
-const loginManager = new LoginManager('.auth-component', loginService);
+const loginManager = new LoginManager('.auth-component', loginService, PubSub);
 loginManager.init();
