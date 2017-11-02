@@ -4,13 +4,6 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 
 class LoginController {
-    index(req, res, next) {
-        res.locals.email = '';
-        res.locals.error = '';
-        res.locals.title = 'NodePop';
-        res.render('login');
-    }
-
     async post(req, res, next) {
         const email = req.body.email;
         const password = User.hashPassword(req.body.password);
@@ -29,7 +22,7 @@ class LoginController {
         // good credentials
 
         jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-            expiresIn: '2d'
+            expiresIn: '1d'
         }, (err, token) => {
             if (err) {
                 return next(err);
