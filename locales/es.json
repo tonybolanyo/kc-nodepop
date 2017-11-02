@@ -23,12 +23,8 @@
 	"loading_articles_error_message": "Ha ocurrido un error al cargar los artículos. Por favor, inténtalo de nuevo más tarde. Si el problema continúa, por favor, contacta con nosotros a través del formulario de contacto",
 	"It's embarrassed, but we have a little problem:": "Es embarazoso, pero tenemos un pequeño problema:",
 	"Language": "Idioma",
-	"Login user": "Identificación de usuario",
 	"Email address": "Correo electrónico",
-	"Enter email": "Introduce tu correo electrónico",
-	"We'll never share your email with anyone else.": "No compartiremos tu correo electrónico con nadie ;)",
 	"Password": "Contraseña",
 	"Login": "Acceder",
-	"No user found with this email/password": "No hemos encontrado ningún usuario con ese correo electrónico/contraseña",
 	"Logout": "Logout"
 }

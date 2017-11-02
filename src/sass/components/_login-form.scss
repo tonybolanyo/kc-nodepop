@@ -1,0 +1,17 @@
+.logged-in {
+    .login-form {
+        display: none;
+    }
+    .btn-logout {
+        display: inline;
+    }
+}
+
+.no-logged-in {
+    .login-form {
+        display: block;
+    }
+    .btn-logout {
+        display: none;
+    }
+}

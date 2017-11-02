@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.statics.hashPassword = function(password) {
     return hash.sha256().update(password).digest('hex');
-}
+};
 
 var User = mongoose.model('User', userSchema);
 

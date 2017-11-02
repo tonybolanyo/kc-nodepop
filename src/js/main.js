@@ -12,7 +12,13 @@ require('bootstrap');
 import AdvertisementsService from './components/AdvertisementsService';
 import AdvertisementsManager from './components/AdvertisementsManager';
 
-const advertisementsService = new AdvertisementsService('/apiv1/advertisements');
+import LoginService from './components/LoginService';
+import LoginManager from './components/LoginManager';
 
+const advertisementsService = new AdvertisementsService('/apiv1/advertisements');
 const advertisementsManager = new AdvertisementsManager('.advertisements', advertisementsService);
 advertisementsManager.init();
+
+const loginService = new LoginService('/apiv1/login');
+const loginManager = new LoginManager('.auth-component', loginService);
+loginManager.init();

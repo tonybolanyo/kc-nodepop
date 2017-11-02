@@ -18,8 +18,9 @@ require('./lib/mongooseConnection');
 require('./models/Advertisement');
 require('./models/User');
 
-// import login controller
-const loginController = require('./routes/loginController');
+// import controllers
+const loginController = require('./routes/apiv1/loginController');
+const advertisementController = require('./routes/apiv1/advertisements');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,16 +40,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API routes
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
-app.use('/apiv1/advertisements', jwtAuth(), require('./routes/apiv1/advertisements'));
+app.get('/apiv1/advertisements', advertisementController.get);
+app.post('/apiv1/advertisements', jwtAuth(), advertisementController.post);
+app.post('/apiv1/login', loginController.post);
 
 // Web routes
-
-// public routes
-app.get('/login', loginController.index);
-app.post('/login', loginController.post);
-app.get('/logout', loginController.logout);
-
-// authenticated routes
 app.use('/', require('./routes/index'));
 app.use('/lang', require('./routes/lang'));
 
