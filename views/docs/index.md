@@ -130,3 +130,13 @@ require('./models/Advertisement');
 At this point i18n is using `defaultLocale` configuration value as active language, (`en` value, actually). Altough you use i18n `__` function you will not see translated messages. You must use i18n `__` to show messages (as `customError` does), but why do you use `__` function on validation messages then?
 
 OK, I configured i18n to auto updated language files, so you need use it here to this feature works.
+
+# User authentication
+
+Only post new articles is protected with user credentials.
+
+NodePop uses JSON Web Token to manage user authentication. The JWT token can be provided to server by one of this methods:
+
+1. As HTTP header `x-access-token`
+2. In the body as `token` param
+3. In hte query string as `token` param
