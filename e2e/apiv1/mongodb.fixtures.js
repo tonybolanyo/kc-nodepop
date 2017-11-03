@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Advertisement = require('../../models/Advertisement');
+const User = require('../../models/User');
 
 module.exports.initAdvertisement = async function() {
     await Advertisement.deleteMany();
@@ -23,5 +24,12 @@ module.exports.initAdvertisement = async function() {
         "isSale": false,
         "picture": "guitar-2276181_640.jpg",
         "tags": ["lifestyle"]
+    }]);
+}
+
+module.exports.initUsers = async function() {
+    await User.deleteMany();
+    await User.insertMany([{
+        name: 'Test User', email: 'user@example.com', password: User.hashPassword('1234')
     }]);
 }

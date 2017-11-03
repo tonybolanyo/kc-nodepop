@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 // because we use i18n to translate validation messages
 const i18n = require('../../config/i18n')();
 
-const Mockgoose = require('mockgoose').Mockgoose
+const Mockgoose = require('mockgoose').Mockgoose;
 const mongoose = require('mongoose');
 const mockgoose = new Mockgoose(mongoose);
 const mongodbFixtures = require('./mongodb.fixtures');
@@ -29,6 +29,7 @@ describe('GET ' + endpoint, function() {
         mongoose.models = {};
         mongoose.modelSchemas = {};
         await mongodbFixtures.initAdvertisement();
+        await mongodbFixtures.initUsers();
     });
 
     it('responds with JSON array of advertisements', function(done) {
@@ -185,6 +186,20 @@ describe('GET ' + endpoint, function() {
 });
 
 describe('POST ' + endpoint, function() {
+    
+    let token = null;
+
+    before(function(done) {
+        request(app)
+            .post('/apiv1/login')
+            .send({ email: 'user@example.com', password: '1234' })
+            .expect(200)
+            .end((err, res) => {
+                token = res.body.token;
+                done();
+            });
+    });
+
     beforeEach(async function () {
         await mockgoose.prepareStorage();
         mongoose.Promise = global.Promise;
@@ -196,7 +211,7 @@ describe('POST ' + endpoint, function() {
         mongoose.modelSchemas = {};
     });
 
-    it('should redirect to login when user is not authenticated', function(done) {
+    it('should reject request when user is not authenticated', function(done) {
         const newAdvertisement = {
             "name": "Mobile phone repairing kit",
             "price": 30.00,
@@ -207,8 +222,7 @@ describe('POST ' + endpoint, function() {
         request(app)
             .post(endpoint)
             .send(newAdvertisement)
-            .expect('Location', /\/login/)
-            .expect(302, done);
+            .expect(403, done);
     });
 
     it('should create a new advertisement', function(done) {
@@ -221,6 +235,7 @@ describe('POST ' + endpoint, function() {
         };
         request(app)
             .post(endpoint)
+            .set('x-access-token', token)
             .send(newAdvertisement)
             .expect(201)
             .end((err, res) => {
@@ -239,6 +254,7 @@ describe('POST ' + endpoint, function() {
         };
         request(app)
             .post(endpoint)
+            .set('x-access-token', token)
             .send(newAdvertisement)
             .expect(422)
             .end((err, res) => {
@@ -259,6 +275,7 @@ describe('POST ' + endpoint, function() {
         };
         request(app)
             .post(endpoint)
+            .set('x-access-token', token)
             .send(newAdvertisement)
             .expect(422)
             .end((err, res) => {
@@ -279,6 +296,7 @@ describe('POST ' + endpoint, function() {
         };
         request(app)
             .post(endpoint)
+            .set('x-access-token', token)
             .send(newAdvertisement)
             .expect(422)
             .end((err, res) => {
