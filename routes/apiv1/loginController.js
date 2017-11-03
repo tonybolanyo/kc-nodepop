@@ -14,7 +14,6 @@ class LoginController {
         if (!user) {
             const error = new Error('Invalid credentials');
             error.status = 403;
-            console.log('!user', error);
             next(error);
             return;
         }
@@ -27,7 +26,7 @@ class LoginController {
             if (err) {
                 return next(err);
             }
-            res.json({ ok: true, token: token });
+            res.json({ ok: true, token: token, name: user.name });
         });
     }
 }

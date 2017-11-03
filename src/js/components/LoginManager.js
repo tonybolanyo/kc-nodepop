@@ -5,9 +5,10 @@ export default class LoginManager {
     constructor(selector, service, pubSub) {
         this.element = $(selector);
         this.form = $(this.element.find('.login-form')[0]);
-        this.logoutButton = $(this.element.find('.btn-logout')[0]);
+        this.userInfo = $(this.element.find('.user-info')[0]);
+        this.logoutButton = $(this.userInfo.find('.btn-logout')[0]);
         this.service = service;
-        this.pubsub = pubSub;
+        this.pubSub = pubSub;
     }
 
     init() {
@@ -30,6 +31,8 @@ export default class LoginManager {
     setupLogoutEventHandler() {
         this.logoutButton.on('click', () => {
             this.service.logout(() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('name');
                 this.pubSub.publish('loggedout');
                 this.setNotLoggedIn();
             });
@@ -46,7 +49,8 @@ export default class LoginManager {
             // if login OK then save token on localStorage
             // and redirect to home
             localStorage.setItem('token', data.token);
-            this.pubSub.publish('loggedin');
+            localStorage.setItem('name', data.name);
+            this.pubSub.publish('loggedin', data.name);
             this.resetForm();
             this.setLoggedIn();
         }, error => {

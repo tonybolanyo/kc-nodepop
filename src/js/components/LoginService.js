@@ -21,7 +21,7 @@ export default class LoginService {
 
     logout(successCallback) {
         // simply removes token from localStorage
-        localStorage.removeItem('token');
+        
         successCallback();
     }
 }

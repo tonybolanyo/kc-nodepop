@@ -26,5 +26,6 @@
 	"Email address": "Correo electrónico",
 	"Password": "Contraseña",
 	"Login": "Acceder",
-	"Logout": "Logout"
+	"Logout": "Logout",
+	"Connected as": "Connected as"
 }

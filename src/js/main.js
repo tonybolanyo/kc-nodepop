@@ -16,6 +16,8 @@ import AdvertisementsManager from './components/AdvertisementsManager';
 import LoginService from './components/LoginService';
 import LoginManager from './components/LoginManager';
 
+import NavBarManager from './components/NavBarManager';
+
 const advertisementsService = new AdvertisementsService('/apiv1/advertisements');
 const advertisementsManager = new AdvertisementsManager('.advertisements', advertisementsService);
 advertisementsManager.init();
@@ -23,3 +25,6 @@ advertisementsManager.init();
 const loginService = new LoginService('/apiv1/login');
 const loginManager = new LoginManager('.auth-component', loginService, PubSub);
 loginManager.init();
+
+const navBarManager = new NavBarManager('.navbar', PubSub);
+navBarManager.init();
