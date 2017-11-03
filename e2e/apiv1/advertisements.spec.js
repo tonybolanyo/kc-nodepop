@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 
 // before load mongoose we must configure i18n
 // because we use i18n to translate validation messages
-const i18n = require('../../config/i18n')();
+require('../../config/i18n')();
 
 const Mockgoose = require('mockgoose').Mockgoose;
 const mongoose = require('mongoose');
@@ -29,7 +29,6 @@ describe('GET ' + endpoint, function() {
         mongoose.models = {};
         mongoose.modelSchemas = {};
         await mongodbFixtures.initAdvertisement();
-        await mongodbFixtures.initUsers();
     });
 
     it('responds with JSON array of advertisements', function(done) {
@@ -188,19 +187,9 @@ describe('GET ' + endpoint, function() {
 describe('POST ' + endpoint, function() {
     
     let token = null;
+    let agent;
 
-    before(function(done) {
-        request(app)
-            .post('/apiv1/login')
-            .send({ email: 'user@example.com', password: '1234' })
-            .expect(200)
-            .end((err, res) => {
-                token = res.body.token;
-                done();
-            });
-    });
-
-    beforeEach(async function () {
+    before(async function() {
         await mockgoose.prepareStorage();
         mongoose.Promise = global.Promise;
         await mongoose.connect('mongodb://mockurl/testingDB', {
@@ -209,17 +198,28 @@ describe('POST ' + endpoint, function() {
         app = require('../../app');
         mongoose.models = {};
         mongoose.modelSchemas = {};
+        await mongodbFixtures.initUsers();
+        agent = request.agent(app);
+        agent
+            .post('/apiv1/login')
+            .send({ email: 'user@example.com', password: '1234' })
+            .expect(200)
+            .then((res) => {
+                token = res.body.token;
+            }).catch(err => {
+                console.log('/apiv1/login error\n', err);
+            });
     });
 
     it('should reject request when user is not authenticated', function(done) {
         const newAdvertisement = {
-            "name": "Mobile phone repairing kit",
-            "price": 30.00,
-            "isSale": false,
-            "picture": "mobile-phone-2510529_640.jpg",
-            "tags": ["work", "mobile"]
+            name: 'Mobile phone repairing kit',
+            price: 30.00,
+            isSale: false,
+            picture: 'mobile-phone-2510529_640.jpg',
+            tags: ['work', 'mobile']
         };
-        request(app)
+        agent
             .post(endpoint)
             .send(newAdvertisement)
             .expect(403, done);
@@ -227,13 +227,13 @@ describe('POST ' + endpoint, function() {
 
     it('should create a new advertisement', function(done) {
         const newAdvertisement = {
-            "name": "Mobile phone repairing kit",
-            "price": 30.00,
-            "isSale": false,
-            "picture": "mobile-phone-2510529_640.jpg",
-            "tags": ["work", "mobile"]
+            name: 'Mobile phone repairing kit',
+            price: 30.00,
+            isSale: false,
+            picture: 'mobile-phone-2510529_640.jpg',
+            tags: ['work', 'mobile']
         };
-        request(app)
+        agent
             .post(endpoint)
             .set('x-access-token', token)
             .send(newAdvertisement)
@@ -247,12 +247,12 @@ describe('POST ' + endpoint, function() {
 
     it('should fail if no name provided', function(done) {
         const newAdvertisement = {
-            "price": 30.00,
-            "isSale": false,
-            "picture": "mobile-phone-2510529_640.jpg",
-            "tags": ["work", "mobile"]
+            price: 30.00,
+            isSale: false,
+            picture: 'mobile-phone-2510529_640.jpg',
+            tags: ['work', 'mobile']
         };
-        request(app)
+        agent
             .post(endpoint)
             .set('x-access-token', token)
             .send(newAdvertisement)
@@ -268,12 +268,12 @@ describe('POST ' + endpoint, function() {
 
     it('should fail if no isSale value provided', function(done) {
         const newAdvertisement = {
-            "name": "Mobile phone repairing kit",
-            "price": 30.00,
-            "picture": "mobile-phone-2510529_640.jpg",
-            "tags": ["work", "mobile"]
+            name: 'Mobile phone repairing kit',
+            price: 30.00,
+            picture: 'mobile-phone-2510529_640.jpg',
+            tags: ['work', 'mobile']
         };
-        request(app)
+        agent
             .post(endpoint)
             .set('x-access-token', token)
             .send(newAdvertisement)
@@ -289,12 +289,12 @@ describe('POST ' + endpoint, function() {
 
     it('should fail if no price value provided', function(done) {
         const newAdvertisement = {
-            "name": "Mobile phone repairing kit",
-            "isSale": false,
-            "picture": "mobile-phone-2510529_640.jpg",
-            "tags": ["work", "mobile"]
+            name: 'Mobile phone repairing kit',
+            isSale: false,
+            picture: 'mobile-phone-2510529_640.jpg',
+            tags: ['work', 'mobile']
         };
-        request(app)
+        agent
             .post(endpoint)
             .set('x-access-token', token)
             .send(newAdvertisement)

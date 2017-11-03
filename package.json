@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/www",
     "dev": "cross-env PORT=3003 NODE_ENV=development nodemon ./bin/www",
-    "e2e": "cross-env LOG_FORMAT=nolog mocha ./e2e/**/*.spec.js --watch --recursive --timeout 10000",
+    "e2e": "cross-env LOG_FORMAT=nolog JWT_SECRET=secrettoken mocha ./e2e/**/*.spec.js --watch --recursive --timeout 10000",
     "installdb": "node ./lib/installDb.js",
     "lint": "./node_modules/.bin/eslint .; exit 0"
   },
