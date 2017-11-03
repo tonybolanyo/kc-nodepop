@@ -50,19 +50,12 @@ export default class AdvertisementFormManager extends UIStatusManager {
 
     send() {
         this.setLoading();
-        const checkboxes = $(this.element.find('input[type=checkbox]:checked'));
-        const adv = {
-            name: this.element.find('#name').val(),
-            price: this.element.find('#price').val(),
-            isSale: this.element.find('#isSale').val(),
-            tags: checkboxes.map((i, elem) => elem.value).get()
-        };
-        
-        this.service.createAdvertisement(adv, () => {
+        const adv = new FormData(this.element[0]);
+        this.service.createAdvertisement(adv, (result) => {
             this.pubSub.publish('new-advertisement', adv);
             this.resetForm();
             this.setLoaded();
-            this.showSuccessMessage(adv);
+            this.showSuccessMessage(result.created);
         }, error => {
             console.error('error', error);
             this.setErrorHtml(`Error sending advertisement: ${error.status} ${error.statusText}`);

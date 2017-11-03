@@ -11,6 +11,9 @@ const app = express();
 // import swaggerJSDoc
 const swaggerSpec = require('./config/swagger');
 const i18n = require('./config/i18n')();
+
+// configura multer uploads
+const upload = require('./config/multer');
 // connect to db
 require('./lib/mongooseConnection');
 
@@ -41,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API routes
 app.use('/apiv1/tags', require('./routes/apiv1/tags'));
 app.get('/apiv1/advertisements', advertisementController.get);
-app.post('/apiv1/advertisements', jwtAuth(), advertisementController.post);
+app.post('/apiv1/advertisements', jwtAuth(), upload.single('picture'), advertisementController.post);
 app.post('/apiv1/login', loginController.post);
 
 // Web routes

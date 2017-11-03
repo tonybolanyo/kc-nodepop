@@ -184,6 +184,7 @@ class AdvertisementController {
      */
     async post (req, res, next) {
         const advertisement = new Advertisement(req.body);
+        advertisement.picture = req.file.filename;
         let created;
         try {
             created = await advertisement.save();
@@ -192,7 +193,7 @@ class AdvertisementController {
             err.message = __('Can\'t create advertisement');
             next(err);
             return;
-        };
+        }
         res.status(201).json({
             status: 'ok',
             created: created

@@ -26,8 +26,12 @@ export default class AdvertisementsService {
         const token = localStorage.getItem('token');
         $.ajax({
             method: 'post',
+            enctype: 'multipart/form-data',
             url: `${this.endpoint}`,
             headers: { 'x-access-token': token },
+            processData: false,
+            contentType: false,
+            cache: false,
             data: data,
             success: successCallback,
             error: errorCallback

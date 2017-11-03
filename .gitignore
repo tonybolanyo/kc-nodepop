@@ -1,6 +1,9 @@
 # public folder is created with gulp
 public
 
+# upload folder
+uploads
+
 # Logs
 logs
 *.log
