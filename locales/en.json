@@ -27,5 +27,18 @@
 	"Password": "Password",
 	"Login": "Login",
 	"Logout": "Logout",
-	"Connected as": "Connected as"
+	"Connected as": "Connected as",
+	"Name of the article": "Name of the article",
+	"Price in euros": "Price in euros",
+	"Pick an image file": "Pick an image file",
+	"Advertisement type": "Advertisement type",
+	"For sale": "For sale",
+	"Wanted": "Wanted",
+	"Name": "Name",
+	"Price": "Price",
+	"Picture": "Picture",
+	"Submit": "Submit",
+	"Insert a new advertisement": "Insert a new advertisement",
+	"Publishing advertisement, please wait": "Publishing advertisement, please wait",
+	"Please correct errors below to publish your advertisement": "Please correct errors below to publish your advertisement"
 }

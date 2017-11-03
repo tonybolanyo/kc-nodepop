@@ -27,5 +27,18 @@
 	"Password": "Contraseña",
 	"Login": "Acceder",
 	"Logout": "Logout",
-	"Connected as": "Connected as"
+	"Connected as": "Conectado como",
+	"Name of the article": "Nombre del artículo",
+	"Price in euros": "Precio en euros",
+	"Pick an image file": "Selecciona un archivo de imagen",
+	"Advertisement type": "Tipo de anuncio",
+	"For sale": "En venta",
+	"Wanted": "Se busca",
+	"Name": "Nombre",
+	"Price": "Precio",
+	"Picture": "Fotografía",
+	"Submit": "Enviar",
+	"Insert a new advertisement": "Insertar un nuevo anuncio",
+	"Publishing advertisement, please wait": "Publicando anuncio, por favor espera",
+	"Please correct errors below to publish your advertisement": "Por favor, corrige los errores antes de publicar el anuncio"
 }

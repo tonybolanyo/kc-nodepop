@@ -1,0 +1,17 @@
+.adv-form {
+    @include ui-status;
+    &.error .ui-status.loaded,
+    &.loading .ui-status.loaded {
+        display: block;
+    }
+}
+
+.adv-form > .overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-width: 400px;
+    margin: 0 calc(50% - 200px); /* can't use 0 auto, not working on IE :( */
+    z-index: 100;
+    background-color: rgba(0, 0, 0, .7);
+}

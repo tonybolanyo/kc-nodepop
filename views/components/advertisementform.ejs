@@ -1,0 +1,39 @@
+<form method="POST" enctype="multipart/form-data" class="adv-form loaded">
+    <div class="ui-status loading overlay">
+        <div class="spinner"></div>
+        <div class="text-center"><%= __('Publishing advertisement, please wait') %>...</div>
+    </div>
+    <div class="alert alert-danger ui-status error">
+        <%= __('Please correct errors below to publish your advertisement') %>.
+    </div>
+    <div class="ui-status loaded">
+        <div class="form-group">
+            <label class="mr-sm-4"><%= __('Advertisement type') %>:</label>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="isSale" id="isSale" value="true"> <%= __('For sale') %>
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="isSale" id="isWanted" value="false"> <%= __('Wanted') %>
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name"><%= __('Name') %>:</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="<%= __('Name of the article') %>">
+        </div>
+        <div class="form-group">
+            <label for="price"><%= __('Price') %>:</label>
+            <input type="text" id="price" name="price" class="form-control" placeholder="<%= __('Price in euros') %>">
+        </div>
+        <div class="form-group">
+            <label for="picture"><%= __('Picture') %>:</label>
+            <input type="file" id="picture" name="picture" class="form-control" placeholder="<% __('Pick an image file') %>">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success"><%= __('Submit') %></button>
+        </div>
+    </div>
+</form>
