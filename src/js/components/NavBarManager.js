@@ -19,9 +19,7 @@ export default class NavBarManager {
 
     setUserName() {
         const name = localStorage.getItem('name');
-        console.log('setUserName', name);
         if (name) {
-            console.log(this.userNamePlaceHolder, name);
             this.userNamePlaceHolder.text(name);
         }
     }

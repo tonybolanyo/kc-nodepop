@@ -21,4 +21,16 @@ export default class AdvertisementsService {
             error: errorCallback
         });
     }
+
+    createAdvertisement(data, successCallback, errorCallback) {
+        const token = localStorage.getItem('token');
+        $.ajax({
+            method: 'post',
+            url: `${this.endpoint}`,
+            headers: { 'x-access-token': token },
+            data: data,
+            success: successCallback,
+            error: errorCallback
+        });
+    }
 }

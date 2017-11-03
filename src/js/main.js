@@ -18,6 +18,8 @@ import LoginManager from './components/LoginManager';
 
 import NavBarManager from './components/NavBarManager';
 
+import AdvertisementFormManager from './components/AdvertisementFormManager';
+
 const advertisementsService = new AdvertisementsService('/apiv1/advertisements');
 const advertisementsManager = new AdvertisementsManager('.advertisements', advertisementsService);
 advertisementsManager.init();
@@ -28,3 +30,6 @@ loginManager.init();
 
 const navBarManager = new NavBarManager('.navbar', PubSub);
 navBarManager.init();
+
+const advertisementFormManager = new AdvertisementFormManager('.adv-form', advertisementsService, PubSub);
+advertisementFormManager.init();

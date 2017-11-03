@@ -20,7 +20,6 @@ export default class AdvertisementManager extends UIStatusManager {
             tag: this.getUrlParamArray('tag'),
             sale: this.getUrlParam('sale')
         };
-        console.log('filters', filters);
         this.service.listAdvertisements(
             offset,
             limit,
