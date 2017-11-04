@@ -42,5 +42,6 @@
 	"Publishing advertisement, please wait": "Publicando anuncio, por favor espera",
 	"Please correct errors below to publish your advertisement": "Por favor, corrige los errores antes de publicar el anuncio",
 	"Select tags": "Select tags",
-	"Cast to Number failed for value \"asd\" at path \"price\"": "Cast to Number failed for value \"asd\" at path \"price\""
+	"Cast to Number failed for value \"asd\" at path \"price\"": "Cast to Number failed for value \"asd\" at path \"price\"",
+	"New": "New"
 }
