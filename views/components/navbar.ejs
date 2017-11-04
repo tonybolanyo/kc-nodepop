@@ -8,13 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/"><%= __('Home'); %> <span class="sr-only">(<%= __('current'); %></span></a>
+                <a class="nav-link" href="/"><%= __('Home') %> <span class="sr-only">(<%= __('current') %></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/docs/"><%= __('Reference'); %></a>
+                <a class="nav-link" href="/docs/"><%= __('Reference') %></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/docs/api/"><%= __('Explore API'); %></a>
+                <a class="nav-link" href="/docs/api/"><%= __('Explore API') %></a>
+            </li>
+            <li class="nav-item authenticated-users">
+                <a href="/create" class="nav-link"><%= __('New') %></a>
             </li>
         </ul>
         <ul class="navbar-nav justify-content-end">
