@@ -56,16 +56,7 @@ Once everything is configured you should run express with nodemon and gulp tasks
 $ npm run dev
 ```
 
-This command run express through nodemon on port `3003` through `PORT` environment variable and set `NODE_ENV` environment variable to `development`.
-
-in another console:
-
-```
-// in project root folder (where gulpfile.js is)
-$ gulp
-```
-
-This command build the frontend from `src` folder to `public` folder and set up browser-sync as a proxy to access express.
+This command run express through nodemon on port `3003` through `PORT` environment variable and set `NODE_ENV` environment variable to `development` and `gulp` to build the frontend from `src` folder to `public` folder and set up browser-sync as a proxy to access express.
 
 Now you can access to http://localhost:3000 to see the home page with the home page of the website showing the list of advertisements.
 

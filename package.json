@@ -2,13 +2,14 @@
   "name": "kc-nodepop",
   "version": "1.0.0",
   "private": true,
-  "description": "KeepCoding Web3 Node module",
+  "description": "KeepCoding Web3 Backend",
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/www",
-    "dev": "cross-env PORT=3003 NODE_ENV=development nodemon ./bin/www",
+    "dev": "cross-env PORT=3003 NODE_ENV=development concurrently \"nodemon ./bin/www\" gulp",
     "e2e": "cross-env LOG_FORMAT=nolog JWT_SECRET=secrettoken mocha ./e2e/**/*.spec.js --watch --recursive --timeout 10000",
     "installdb": "node ./lib/installDb.js",
-    "lint": "./node_modules/.bin/eslint .; exit 0"
+    "lint": "./node_modules/.bin/eslint .; exit 0",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/tonybolanyo/kc-nodepop#readme",
   "dependencies": {
     "body-parser": "~1.17.1",
+    "concurrently": "^3.5.0",
     "cookie-parser": "~1.4.3",
     "debug": "^2.6.9",
     "dotenv": "^4.0.0",
