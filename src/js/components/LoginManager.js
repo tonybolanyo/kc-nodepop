@@ -56,6 +56,7 @@ export default class LoginManager {
         }, error => {
             console.error('login error callback', error);
             this.setNotLoggedIn();
+            window.location.href = '/invalid-credentials';
         });
     }
 

@@ -48,5 +48,7 @@
 	"Lifestyle": "Lifestyle",
 	"Mobile": "Mobile",
 	"Work": "Work",
-	"Motor": "Motor"
+	"Motor": "Motor",
+	"Invalid credentials": "Invalid credentials",
+	"mail/password incorrect.": "The mail/password combination provided desn't correspond to any valid user. Please try again or contact system administrator if you feel this is and error."
 }

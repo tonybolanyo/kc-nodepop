@@ -48,5 +48,7 @@
 	"Lifestyle": "Estilo de vida",
 	"Mobile": "Móvil",
 	"Work": "Trabajo",
-	"Motor": "Motor"
+	"Motor": "Motor",
+	"Invalid credentials": "Credenciales no válidas",
+	"mail/password incorrect.": "La combinación de correo electrónico y contraseña introducidas no corresponden a ningún usuario válido. Por favor inténtalo de nuevo o contacta con el administrador si crees que esto es un error."
 }
