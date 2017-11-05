@@ -7,7 +7,8 @@ const path = require('path');
 
 const multer = require('multer');
 
-const uploadPath = path.join(__dirname, '..', process.env.NODEPOP_UPLOAD_FOLDER);
+const uploadFolderName = process.env.NODEPOP_UPLOAD_FOLDER || 'uploads';
+const uploadPath = path.join(__dirname, '..', uploadFolderName);
 
 if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath);

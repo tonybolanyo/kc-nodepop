@@ -239,6 +239,7 @@ describe('POST ' + endpoint, function() {
             .send(newAdvertisement)
             .expect(201)
             .end((err, res) => {
+                console.log(res);
                 expect(res.body.status).to.be.eql('ok');
                 expect(res.body.created).to.have.property('_id');
                 done();

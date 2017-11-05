@@ -185,19 +185,23 @@ class AdvertisementController {
      */
     async post (req, res, next) {
         const advertisement = new Advertisement(req.body);
-        advertisement.picture = req.file.filename;
+        if (req.file) {
+            advertisement.picture = req.file.filename;
+        }
         let created;
         try {
             created = await advertisement.save();
-            const conn = await amqpConnection;
-            const channel = await conn.createChannel();
-            await channel.assertQueue('resize', {
-                durable: true
-            });
-            const result = channel.sendToQueue('resize', new Buffer(advertisement.picture), {
-                persistent: true
-            });
-            console.log(advertisement.picture, result);
+            if (req.file) {
+                const conn = await amqpConnection;
+                const channel = await conn.createChannel();
+                await channel.assertQueue('resize', {
+                    durable: true
+                });
+                const result = channel.sendToQueue('resize', new Buffer(advertisement.picture), {
+                    persistent: true
+                });
+                console.log(advertisement.picture, result);
+            }
         } catch(err) {
             err.devMessage = err.message;
             err.message = __('Can\'t create advertisement');
