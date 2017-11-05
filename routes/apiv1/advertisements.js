@@ -2,8 +2,7 @@
 
 const mongoose = require('mongoose');
 const Advertisement = mongoose.model('Advertisement');
-const amqpConnection = require('../../config/amqplib');
-
+const sendToQueue = require('../../lib/resizeQueue').sendToQueue;
 /**
  * @swagger
  * definitions:
@@ -192,15 +191,7 @@ class AdvertisementController {
         try {
             created = await advertisement.save();
             if (req.file) {
-                const conn = await amqpConnection;
-                const channel = await conn.createChannel();
-                await channel.assertQueue('resize', {
-                    durable: true
-                });
-                const result = channel.sendToQueue('resize', new Buffer(advertisement.picture), {
-                    persistent: true
-                });
-                console.log(advertisement.picture, result);
+                sendToQueue(advertisement.picture);
             }
         } catch(err) {
             err.devMessage = err.message;
