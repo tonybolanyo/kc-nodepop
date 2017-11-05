@@ -20,6 +20,12 @@ import NavBarManager from './components/NavBarManager';
 
 import AdvertisementFormManager from './components/AdvertisementFormManager';
 
+import Translations from './translations';
+
+const translations = new Translations();
+translations.init();
+translations.translate('Advertisement created');
+
 const advertisementsService = new AdvertisementsService('/apiv1/advertisements');
 const advertisementsManager = new AdvertisementsManager('.advertisements', advertisementsService);
 advertisementsManager.init();
