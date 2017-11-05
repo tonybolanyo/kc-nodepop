@@ -44,5 +44,9 @@
 	"Select tags": "Select tags",
 	"New": "New",
 	"Unauthorized": "Unauthorized",
-	"Not allowed to access this page.": "You're not allowed to access this page.<br>Please login using the form at the top and try again."
+	"Not allowed to access this page.": "You're not allowed to access this page.<br>Please login using the form at the top and try again.",
+	"Lifestyle": "Lifestyle",
+	"Mobile": "Mobile",
+	"Work": "Work",
+	"Motor": "Motor"
 }

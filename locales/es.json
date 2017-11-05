@@ -26,7 +26,7 @@
 	"Email address": "Correo electrónico",
 	"Password": "Contraseña",
 	"Login": "Acceder",
-	"Logout": "Logout",
+	"Logout": "Salir",
 	"Connected as": "Conectado como",
 	"Name of the article": "Nombre del artículo",
 	"Price in euros": "Precio en euros",
@@ -44,5 +44,9 @@
 	"Select tags": "Selecciona etiquetas",
 	"New": "Nuevo",
 	"Unauthorized": "No autorizado",
-	"Not allowed to access this page.": "No tienes autorización para acceder a esta página.\nPor favor, identifícate usando el formulario de la parte superior e inténtalo de nuevo."
+	"Not allowed to access this page.": "No tienes autorización para acceder a esta página.\nPor favor, identifícate usando el formulario de la parte superior e inténtalo de nuevo.",
+	"Lifestyle": "Estilo de vida",
+	"Mobile": "Móvil",
+	"Work": "Trabajo",
+	"Motor": "Motor"
 }
