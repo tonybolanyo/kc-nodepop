@@ -16,13 +16,17 @@ $ npm install
 
 By default, app asumes you have a working mongodb instance on localhost in the default port. You can change connection details in several ways:
 
-1. You can set two environmet variables
-2. You can use `.env` file to set this two environment variables, as shown in `.env.sample`. The two variables are:
+1. You can set environment variables
+2. You can use `.env` file to set this environment variables, as shown in `.env.sample`. The variables are:
 
 ```
 NODEPOP_DBHOST=127.0.0.1
 NODEPOP_PORT=27017
+NODEPOP_DBUSER=username
+NODEPOP_DBPASSWORD=password
 ```
+
+If your database desn need any user/password configuration, just ignore these variables.
 
 If you don't have a running mongodb server on localhost at the default port you need to install and launch one or change configuration params to specify one live server.
 
@@ -34,9 +38,9 @@ If you need more information on mongodb you can visit the official documentation
 
 ## Setting up initial sample data
 
-You can use `npm run installdb` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `data/sample_data.json` file.
+You can use `npm run installdata` to clean up `advertisements` collection and populate sample data (16 sample advertisements), from `data/sample_data.json` file, insert two sample users and installs some pictures for advertisements in `public/images/advertisements` folder. You can login with this users using their emails (tony@example.com or user@example.com) and the password *1234*.
 
-This script uses the same mongodb configuration data. When you run the script, it drops any document in `advertisements` collection.
+This script uses the same mongodb configuration data. When you run the script, it drops any document in `advertisements` and `users` collections.
 
 `sample_data.json` contains an array of advertisements with fields:
 
@@ -45,6 +49,22 @@ This script uses the same mongodb configuration data. When you run the script, i
 - **isSale**: boolean. true for sales, false for wanted articles.
 - **tags**: array of strings. Only "work", "lifestyle", "mobile" and "motor" are valid tags.
 - **picture**: string. Name of an image file for article. Image must exists in public/images/advertisements when server is running. Any image on src/images/advertisement will be optimized and copied to this folder if you use gulp to start server.
+
+
+## Setting up AMQP and thumbnailer
+
+Every advertisement picture will be resized to be a square image of 550 pixels width and height. Resizing is done on background by a second process called `thumbnailer`. First of all you must configure an AMQP Server like CloudAMQP which uses RabbitMQ (read more at https://www.cloudamqp.com).
+
+Once your AMQP service is ready you need the connection URL beginning with `amqp://...` to be able to connect with the service. Put that URL on `AMQP_URL` environment variable (in your system or in `.env` file) and launch `thumbnailer` process:
+
+```
+$ npm run thumbnailer
+```
+
+When you upload a picture for an advertisement thumbnailer will take it from uploads folder, resize and save it in `public/images/advertisements/' folder.
+
+By default, thumbnailer uses a queue named 'resize' but you can customize it using the environment variable `NODEPOP_THUMB_QUEUE`.
+
 
 
 ## Running server for develop
@@ -77,6 +97,7 @@ After a few seconds you should see all tests passing.
 To simulate run server in production follow these steps:
 
 - build frontend: `gulp build`
+- run thumbnailer: `npm run thumbnailer`
 - run server: `npm server`
 
 # API description

@@ -9,7 +9,8 @@
     "e2e": "cross-env LOG_FORMAT=nolog JWT_SECRET=secrettoken mocha ./e2e/**/*.spec.js --watch --recursive --timeout 10000",
     "installdata": "node ./lib/installSampleData.js",
     "lint": "./node_modules/.bin/eslint .; exit 0",
-    "build": "gulp build"
+    "build": "gulp build",
+    "thumbnailer": "nodemon ./lib/thumbnailer.js"
   },
   "repository": {
     "type": "git",
