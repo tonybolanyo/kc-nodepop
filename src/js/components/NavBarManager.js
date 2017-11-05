@@ -19,10 +19,8 @@ export default class NavBarManager {
     }
 
     setupAuthLinks() {
-        console.log('HOLAAA');
         this.element.find('.authenticated-users a').on('click', (event) => {
             let link = $(event.target).attr('href');
-            console.log('captured!!!', link);
             const token = localStorage.getItem('token');
             if (token) {
                 link = `${link}?token=${token}`;
