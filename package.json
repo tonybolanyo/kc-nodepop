@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node ./bin/www",
     "dev": "cross-env PORT=3003 NODE_ENV=development concurrently \"nodemon ./bin/www\" gulp",
     "e2e": "cross-env LOG_FORMAT=nolog JWT_SECRET=secrettoken mocha ./e2e/**/*.spec.js --watch --recursive --timeout 10000",
-    "installdb": "node ./lib/installDb.js",
+    "installdata": "node ./lib/installSampleData.js",
     "lint": "./node_modules/.bin/eslint .; exit 0",
     "build": "gulp build"
   },
