@@ -6,11 +6,12 @@
 @import "./bootstrap";
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./components/elements";
 @import "./components/uistatus";
 @import "./components/layout";
 @import "./components/footer";
 @import "./components/advertisements";
-@import "./components/_login-form";
-@import "./components/_navbar";
-@import "./components/_adv-form";
-@import "./components/_spinner";
+@import "./components/login-form";
+@import "./components/navbar";
+@import "./components/adv-form";
+@import "./components/spinner";

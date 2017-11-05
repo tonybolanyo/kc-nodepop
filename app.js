@@ -50,7 +50,7 @@ app.post('/apiv1/login', loginController.post);
 // Web routes
 app.use('/', require('./routes/index'));
 app.use('/lang', require('./routes/lang'));
-app.use('/create', require('./routes/advertisemens'));
+app.use('/create', jwtAuth(), require('./routes/advertisemens'));
 
 // serve swagger JSON API definition
 app.get('/swagger.json', function(req, res) {

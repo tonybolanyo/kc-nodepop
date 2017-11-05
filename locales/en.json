@@ -42,6 +42,7 @@
 	"Publishing advertisement, please wait": "Publishing advertisement, please wait",
 	"Please correct errors below to publish your advertisement": "Please correct errors below to publish your advertisement",
 	"Select tags": "Select tags",
-	"Cast to Number failed for value \"asd\" at path \"price\"": "Cast to Number failed for value \"asd\" at path \"price\"",
-	"New": "New"
+	"New": "New",
+	"Unauthorized": "Unauthorized",
+	"Not allowed to access this page.": "You're not allowed to access this page.<br>Please login using the form at the top and try again."
 }
