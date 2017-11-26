@@ -2,6 +2,11 @@
 
 **Nodepop** is a test project to try a simple API for a Wallapop like application backend.
 
+**NOTE FOR DEVOPS:**    
+You can access an online version on https://nodepop.tonygb.com
+
+[See notes about how I deployed this](views/docs/deploy_notes.md) on an AWS Server with the free tier.
+
 ## Configure project
 
 First of all clone the repository and install dependencies with npm
